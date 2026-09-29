@@ -21,7 +21,7 @@ export function ScreenshotGallery() {
       title: 'Suggested response',
       caption: 'Pre-drafted quote ready to send via WhatsApp.',
       tag: 'Quote Composer',
-      src: '/screens/screen_inquiry_quote.png',
+      src: '/screens/screen_quote.jpg',
     },
     {
       title: 'AutoPilot',

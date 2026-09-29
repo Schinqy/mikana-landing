@@ -22,7 +22,7 @@ export const SCREEN_PRESETS = [
     title: 'Quote Composer',
     badge: 'WhatsApp DM',
     description: 'Custom quote drafted from your catalog ready for 1-tap dispatch',
-    src: '/screens/screen_inquiry_quote.png',
+    src: '/screens/screen_quote.jpg',
   },
   {
     id: 'groups',

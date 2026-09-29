@@ -101,14 +101,14 @@ export function HeroVisual() {
                     <div className="flex items-center justify-between text-xs text-[#55544E] mb-1.5">
                       <span className="flex items-center gap-1.5 font-medium">
                         <span className="w-2 h-2 rounded-full bg-[#25D366]" />
-                        Harare Wholesale &amp; Spares Trade
+                        Harare Auto Spares Traders (Group C)
                       </span>
-                      <span className="tabular-nums text-[#8A8880]">10:42 AM</span>
+                      <span className="tabular-nums text-[#8A8880]">11:05 AM</span>
                     </div>
                     <div className="p-3.5 sm:p-4 rounded-2xl rounded-tl-sm bg-[#E8F8EA] border border-[#D1F2D9] shadow-2xs">
-                      <div className="text-xs font-bold text-[#111827]">Customer</div>
+                      <div className="text-xs font-bold text-[#111827]">Lui (Customer)</div>
                       <p className="text-sm sm:text-[15px] text-[#1F2937] leading-snug mt-1 font-normal">
-                        “Anyone selling a Toyota Hilux 2KD injector? Need one urgently.”
+                        “Look for a engine for a nissan sunny”
                       </p>
                     </div>
                   </div>
@@ -122,13 +122,13 @@ export function HeroVisual() {
                     <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-[#1E56A0] shadow-xs">
                       <div className="flex items-center justify-between text-xs">
                         <span className="font-bold text-[#1E56A0]">New opportunity</span>
-                        <span className="font-bold text-[#0E8F63]">94% match</span>
+                        <span className="font-bold text-[#0E8F63]">95% match</span>
                       </div>
                       <div className="mt-1.5 text-base sm:text-[17px] font-bold text-[#111827] leading-tight">
-                        Toyota Hilux 2KD Injector
+                        Nissan Sunny Engine
                       </div>
                       <p className="text-xs text-[#66645D] mt-0.5">
-                        Matches your catalog: Denso OEM 2KD
+                        Matches your catalog: Engine &amp; Component Parts
                       </p>
                       <div className="mt-2.5 pt-2.5 border-t border-[#F1F1ED] flex items-center justify-between text-xs">
                         <span className="text-[#66645D]">Harare</span>
@@ -138,28 +138,24 @@ export function HeroVisual() {
                   </div>
                 </div>
 
-                {/* 3. The alert on your phone */}
+                {/* 3. The alert on your phone: Real Mikana Notification Screenshot */}
                 <div className="relative">
                   <span className="absolute -left-[31px] sm:-left-[35px] top-1.5 w-3 h-3 rounded-full bg-[#FAFAF8] border-2 border-[#8A8880]" />
                   <div className="w-full max-w-md sm:ml-12 md:ml-16">
-                    <div className="text-xs text-[#55544E] font-medium mb-1.5">Your phone</div>
-                    <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0B1E2D] text-white shadow-md">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="flex items-center gap-1.5 font-bold">
-                          <span className="w-2 h-2 rounded-full bg-blue-400" />
-                          Mikana
-                        </span>
-                        <span className="text-[#94A3B8]">Just now</span>
-                      </div>
-                      <div className="mt-1.5 text-sm font-bold">
-                        Mikana found an opportunity for you
-                      </div>
-                      <p className="text-xs text-[#CBD5E1] leading-relaxed mt-1">
-                        Toyota Hilux 2KD injector in Harare. Urgent request.
-                      </p>
-                      <div className="mt-2.5 pt-2.5 border-t border-white/10 text-xs text-blue-300 font-medium">
-                        Tap to view drafted quote →
-                      </div>
+                    <div className="text-xs text-[#55544E] font-medium mb-1.5 flex items-center justify-between">
+                      <span>Real lock-screen alert</span>
+                      <span className="text-[11px] text-[#1E56A0] font-semibold">Live Mikana notification</span>
+                    </div>
+                    <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-[#2D3139] bg-[#16181D]">
+                      <img
+                        src="/screens/screenshot_notification.jpg"
+                        alt="Real Mikana Lock Screen Notification: New Inquiry Automotive for Nissan Sunny"
+                        className="w-full h-auto object-cover select-none"
+                      />
+                    </div>
+                    <div className="mt-2 text-xs text-[#1E56A0] font-medium flex items-center gap-1.5">
+                      <span>Tap alert to open drafted WhatsApp quote</span>
+                      <span>→</span>
                     </div>
                   </div>
                 </div>
@@ -173,9 +169,9 @@ export function HeroVisual() {
                 What opens when you tap:
               </div>
               <SamsungPhoneFrame
-                src="/screens/screen_inquiry_quote.png"
-                alt="Mikana Inquiry & Quick Quote Screen"
-                caption="Live screen: Instant WhatsApp quote pre-filled from your catalog"
+                src="/screens/screen_quote.jpg"
+                alt="Real Mikana WhatsApp quote screen"
+                caption="Live screen: Instant WhatsApp quote ready to send with 1 tap"
               />
             </div>
 
@@ -193,13 +189,13 @@ export function HeroVisual() {
                 <div className="py-3.5 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6">
                   <dt className="text-sm font-bold text-[#1C1C1E]">Your real prices</dt>
                   <dd className="mt-1 sm:mt-0 text-xs sm:text-sm text-[#66645D] leading-relaxed">
-                    Mikana pulls your exact price ($120 USD) and 6-month warranty from your uploaded catalog.
+                    Mikana pulls your exact stock, pricing, and warranty terms from your uploaded catalog.
                   </dd>
                 </div>
                 <div className="py-3.5 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6">
                   <dt className="text-sm font-bold text-[#1C1C1E]">One-tap reply</dt>
                   <dd className="mt-1 sm:mt-0 text-xs sm:text-sm text-[#66645D] leading-relaxed">
-                    Opens the customer's WhatsApp DM with the quote pre-filled. You just tap send.
+                    Opens the customer's WhatsApp DM with the quote pre-filled. You just tap "Send via WhatsApp".
                   </dd>
                 </div>
                 <div className="py-3.5 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6">
@@ -217,8 +213,8 @@ export function HeroVisual() {
           <div className="hidden lg:block lg:col-span-5">
             <div className="sticky top-12 flex justify-center">
               <SamsungPhoneFrame
-                src="/screens/screen_inquiry_quote.png"
-                alt="Mikana Inquiry & Quick Quote Screen"
+                src="/screens/screen_quote.jpg"
+                alt="Real Mikana WhatsApp quote screen"
                 caption="Real Mikana screen: Instant WhatsApp quote grounded in your catalog"
               />
             </div>
