@@ -23,11 +23,11 @@ export function HeroVisual() {
   }, []);
 
   return (
-    <section id="overview" className="pt-14 pb-20 sm:pt-20 sm:pb-28 bg-[#FAFAF8]">
+    <section id="overview" className="pt-5 pb-16 sm:pt-8 sm:pb-24 bg-[#FAFAF8]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ── MAIN EDITORIAL HEADLINE & SUBTITLE ── */}
-        <div className="text-center max-w-3xl mx-auto space-y-6">
+        <div className="text-center max-w-3xl mx-auto space-y-4 sm:space-y-5">
           <h1 className="text-4xl sm:text-6xl lg:text-[70px] font-semibold tracking-[-0.04em] text-[#1C1C1E] leading-[1.08] max-w-4xl mx-auto">
             What if you never missed <br className="hidden sm:inline" />
             your next potential{' '}
@@ -69,7 +69,7 @@ export function HeroVisual() {
         </div>
 
         {/* ── MOONJAR STYLE STUDIO WINDOW FRAME ── */}
-        <div className="mt-14 sm:mt-18 max-w-5xl mx-auto">
+        <div className="mt-8 sm:mt-11 max-w-5xl mx-auto">
           <div className="rounded-3xl bg-white border border-[#E5E5E0] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)] overflow-hidden">
             
             {/* macOS Studio Top Window Bar */}

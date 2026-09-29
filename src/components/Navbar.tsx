@@ -8,7 +8,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="w-full bg-[#FAFAF8] py-4 sm:py-5 sticky top-0 z-50 backdrop-blur-md bg-[#FAFAF8]/95 border-b border-[#F0F0EB]/60">
+    <header className="w-full bg-[#FAFAF8] py-3 sm:py-3.5 sticky top-0 z-50 backdrop-blur-md bg-[#FAFAF8]/95 border-b border-[#F0F0EB]/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
