@@ -2,94 +2,98 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://pxdprchczhegglaknydn.supabase.co';
+const SUPABASE_ANON_KEY =
+  process.env.SUPABASE_ANON_KEY ||
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4ZHByY2hjemhlZ2dsYWtueWRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzNzEyMjQsImV4cCI6MjEwMzk0NzIyNH0.b_gxZ8Jv0ZaE-swH8dY-RA_Q48xBdkKpmjDAnLnh9v8';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, phone, offering, tradeType, email } = body;
+    const { name, email, offering, tradeType, phone } = body;
 
     const applicantName = (name || '').trim();
-    const applicantPhone = (phone || '').trim();
+    const applicantEmail = (email || '').trim().toLowerCase();
     const applicantOffering = (offering || tradeType || '').trim();
+    const applicantPhone = (phone || '').trim();
 
-    if (!applicantPhone && !applicantName) {
+    if (!applicantEmail) {
       return NextResponse.json(
-        { error: 'Name and WhatsApp phone number are required' },
+        { error: 'A valid email address is required' },
         { status: 400 }
       );
-    }
-
-    const dataDir = path.join(process.cwd(), 'data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
     }
 
     const now = new Date();
     const timestamp = now.toISOString().replace('T', ' ').substring(0, 19);
 
-    // 1. Append clean, readable line to waitlist.txt
-    const txtFilePath = path.join(dataDir, 'waitlist.txt');
-    const txtLine = `[${timestamp}] Name: ${applicantName || 'Anonymous'} | Phone: ${applicantPhone} | Offering: ${applicantOffering || 'Unspecified'} | Email: ${email || 'N/A'}\n`;
+    // 1. Primary: Save to Supabase Cloud Database (persistent on Vercel)
+    let supabaseSuccess = false;
     try {
-      fs.appendFileSync(txtFilePath, txtLine, 'utf-8');
-    } catch (fsErr) {
-      console.warn('Could not append to waitlist.txt (possibly read-only env):', fsErr);
-    }
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=representation',
+        },
+        body: JSON.stringify({
+          name: applicantName || 'Anonymous',
+          email: applicantEmail,
+          offering: applicantOffering || 'Unspecified',
+          phone: applicantPhone || null,
+        }),
+      });
 
-    // 2. Append to waitlist.json
-    const jsonFilePath = path.join(dataDir, 'waitlist.json');
-    let waitlist: Array<{
-      ticketNumber: number;
-      name: string;
-      phone: string;
-      offering: string;
-      email?: string;
-      createdAt: string;
-    }> = [];
-
-    if (fs.existsSync(jsonFilePath)) {
-      try {
-        const fileContent = fs.readFileSync(jsonFilePath, 'utf-8');
-        waitlist = JSON.parse(fileContent);
-      } catch {
-        waitlist = [];
+      if (res.ok) {
+        supabaseSuccess = true;
+      } else {
+        const errorText = await res.text();
+        console.warn('Supabase waitlist insert non-200:', errorText);
       }
+    } catch (dbErr) {
+      console.warn('Failed to reach Supabase waitlist table:', dbErr);
     }
 
-    const ticketNumber = waitlist.length + 101;
-    const entry = {
-      ticketNumber,
-      name: applicantName,
-      phone: applicantPhone,
-      offering: applicantOffering,
-      email: email || undefined,
-      createdAt: now.toISOString(),
-    };
-
-    waitlist.push(entry);
+    // 2. Secondary Local Backup: Append to data/waitlist.txt & waitlist.json
     try {
+      const dataDir = path.join(process.cwd(), 'data');
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
+
+      const txtFilePath = path.join(dataDir, 'waitlist.txt');
+      const txtLine = `[${timestamp}] Name: ${applicantName || 'Anonymous'} | Email: ${applicantEmail} | Offering: ${applicantOffering || 'Unspecified'} | Phone: ${applicantPhone || 'N/A'}\n`;
+      fs.appendFileSync(txtFilePath, txtLine, 'utf-8');
+
+      const jsonFilePath = path.join(dataDir, 'waitlist.json');
+      let waitlist = [];
+      if (fs.existsSync(jsonFilePath)) {
+        try {
+          waitlist = JSON.parse(fs.readFileSync(jsonFilePath, 'utf-8'));
+        } catch {
+          waitlist = [];
+        }
+      }
+      waitlist.push({
+        ticketNumber: waitlist.length + 101,
+        name: applicantName,
+        email: applicantEmail,
+        offering: applicantOffering,
+        phone: applicantPhone,
+        createdAt: now.toISOString(),
+      });
       fs.writeFileSync(jsonFilePath, JSON.stringify(waitlist, null, 2), 'utf-8');
     } catch (fsErr) {
-      console.warn('Could not write waitlist.json:', fsErr);
-    }
-
-    // 3. Optional Nivacity hosting webhook forwarding
-    const nivacityEndpoint = process.env.NIVACITY_WAITLIST_ENDPOINT || process.env.NIVACITY_WEBHOOK_URL;
-    if (nivacityEndpoint) {
-      try {
-        await fetch(nivacityEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(entry),
-        });
-      } catch (webhookErr) {
-        console.warn('Failed to forward to Nivacity endpoint:', webhookErr);
-      }
+      // Ephemeral disk writes may fail in read-only lambda, which is safe since Supabase saved it
     }
 
     return NextResponse.json({
       success: true,
-      ticketNumber,
-      message: 'Added to Mikana waitlist successfully',
+      email: applicantEmail,
+      persisted: supabaseSuccess,
+      message: 'Added to Mikana early access waitlist successfully',
     });
   } catch (error) {
     console.error('Waitlist API error:', error);
@@ -102,15 +106,33 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const dataDir = path.join(process.cwd(), 'data');
-    const txtPath = path.join(dataDir, 'waitlist.txt');
-    const jsonPath = path.join(dataDir, 'waitlist.json');
-
-    let textContent = '';
-    if (fs.existsSync(txtPath)) {
-      textContent = fs.readFileSync(txtPath, 'utf-8');
+    // 1. Try querying Supabase
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/waitlist?select=*&order=created_at.desc`,
+        {
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        }
+      );
+      if (res.ok) {
+        const rows = await res.json();
+        return NextResponse.json({
+          success: true,
+          source: 'supabase',
+          count: rows.length,
+          entries: rows,
+        });
+      }
+    } catch (dbErr) {
+      console.warn('Could not fetch waitlist from Supabase:', dbErr);
     }
 
+    // 2. Fallback to local files
+    const dataDir = path.join(process.cwd(), 'data');
+    const jsonPath = path.join(dataDir, 'waitlist.json');
     let jsonEntries = [];
     if (fs.existsSync(jsonPath)) {
       try {
@@ -122,9 +144,9 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
+      source: 'local_file',
       count: jsonEntries.length,
       entries: jsonEntries,
-      rawText: textContent,
     });
   } catch (error) {
     return NextResponse.json(

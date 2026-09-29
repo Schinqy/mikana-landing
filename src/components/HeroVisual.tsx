@@ -65,7 +65,7 @@ export function HeroVisual() {
 
             {/* Thickened Subtext with pure color highlights */}
             <p className="mt-5 sm:mt-6 max-w-xl text-[17px] sm:text-[18.5px] font-semibold text-[#1C1C1E] leading-relaxed">
-              Mikana watches <span className="text-[#16A34A]">WhatsApp</span> for real opportunities that match what you sell, then sends
+              Mikana watches <span className="text-[#0B2545] font-bold">WhatsApp groups</span> for real opportunities that match what you sell, then sends
               them straight to you as <span className="text-[#1E56A0]">instant notifications</span>. When you're busy, <span className="text-[#1C1C1E] font-bold">AutoPilot</span> can
               reply for you.
             </p>

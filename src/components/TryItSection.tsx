@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Mail } from 'lucide-react';
 
 export function TryItSection() {
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
+    email: '',
     offering: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -14,7 +14,7 @@ export function TryItSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
+    if (!formData.name || !formData.email) return;
 
     setLoading(true);
     try {
@@ -23,7 +23,7 @@ export function TryItSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
-          phone: formData.phone,
+          email: formData.email,
           offering: formData.offering,
         }),
       });
@@ -48,7 +48,7 @@ export function TryItSection() {
             Ready to never miss your next customer?
           </h2>
           <p className="text-base sm:text-[17px] text-[#66645D] leading-relaxed">
-            Tell us what products or services you offer. We will notify your WhatsApp the moment incoming trade requests match your catalog.
+            Tell us what products or services you offer. We will email your early access invitation as soon as we launch the next batch of testers.
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export function TryItSection() {
                 You’re on the priority list.
               </h3>
               <p className="text-sm text-[#66645D] max-w-sm mx-auto leading-relaxed">
-                We will reach out directly on WhatsApp ({formData.phone || 'your number'}) with your early access invitation and setup guide.
+                We will reach out directly to <strong className="text-[#1C1C1E]">{formData.email}</strong> with your early access invitation and setup guide.
               </p>
             </div>
           ) : (
@@ -84,14 +84,14 @@ export function TryItSection() {
 
               <div>
                 <label className="block text-[13px] font-medium text-[#1C1C1E] mb-1.5">
-                  WhatsApp Phone Number
+                  Email Address
                 </label>
                 <input
-                  type="tel"
+                  type="email"
                   required
-                  placeholder="+263 77 123 4567"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="e.g. tinashe@company.co.zw"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl bg-[#FAF9F6] border border-[#E5E5E0] text-sm font-medium text-[#1C1C1E] placeholder-[#A1A19A] focus:outline-none focus:border-[#1E56A0] focus:bg-white transition-all"
                 />
               </div>
@@ -125,7 +125,7 @@ export function TryItSection() {
               <div className="pt-4 border-t border-[#F0F0EB] flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-[#66645D]">
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" />
-                  Direct WhatsApp alerts
+                  Direct email invitation
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A]" />
