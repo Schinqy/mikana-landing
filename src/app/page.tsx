@@ -10,7 +10,6 @@ import { RealExamplesSection } from '@/components/RealExamplesSection';
 import { WhoIsThisForSection } from '@/components/WhoIsThisForSection';
 import { BiggerIdeaSection } from '@/components/BiggerIdeaSection';
 import { TryItSection } from '@/components/TryItSection';
-import { ScreenshotGallery } from '@/components/ScreenshotGallery';
 import { FaqSection } from '@/components/FaqSection';
 import { FinalScreen } from '@/components/FinalScreen';
 import { MobileStickyBar } from '@/components/MobileStickyBar';
@@ -52,10 +51,7 @@ export default function Home() {
         {/* Section 11: Try It (Try Mikana + Short 3-field Join Test form) */}
         <TryItSection />
 
-        {/* Section 12: Screenshot Gallery (Real screenshots carousel with short captions) */}
-        <ScreenshotGallery />
-
-        {/* Section 13: FAQ (9 exact questions in clean accordion) */}
+        {/* Section 12: FAQ (10 questions in clean accordion) */}
         <FaqSection />
 
         {/* Section 14: Final Screen (QR Code, mikana.lui.co.zw, POTRAZ note) */}
