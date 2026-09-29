@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, Phone, Mail } from 'lucide-react';
 
 export function FinalScreen() {
   return (
@@ -45,32 +45,38 @@ export function FinalScreen() {
               </p>
             </div>
 
-            {/* Direct Contacts */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2.5">
-              <span className="text-xs font-semibold text-[#8A8880] uppercase tracking-wider">
-                Direct Contacts:
-              </span>
-              <div className="flex flex-wrap items-center gap-2.5">
-                <a
-                  href="https://wa.me/263776432893"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FAF9F6] border border-[#E5E5E0] hover:border-[#16A34A] hover:bg-white text-xs font-medium text-[#1C1C1E] transition-all group"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#16A34A]" />
-                  <span className="font-semibold tabular-nums">0776432893</span>
-                  <span className="text-[11px] text-[#71717A] group-hover:text-[#16A34A]">(WhatsApp / Call)</span>
-                </a>
-                <a
-                  href="https://wa.me/263780331740"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FAF9F6] border border-[#E5E5E0] hover:border-[#16A34A] hover:bg-white text-xs font-medium text-[#1C1C1E] transition-all group"
-                >
-                  <MessageCircle className="w-3.5 h-3.5 text-[#16A34A]" />
-                  <span className="font-semibold tabular-nums">0780331740</span>
-                  <span className="text-[11px] text-[#71717A] group-hover:text-[#16A34A]">(WhatsApp / Call)</span>
-                </a>
+            {/* Contact Details (Simple with Phone & Email, No Address) */}
+            <div className="space-y-2 text-xs text-[#66645D]">
+              <div className="font-bold text-[#1C1C1E] text-xs tracking-wider uppercase">
+                CONTACT DETAILS
+              </div>
+              
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8">
+                {/* Phone Numbers */}
+                <div className="flex items-start gap-2">
+                  <Phone className="w-3.5 h-3.5 text-[#1E56A0] mt-0.5 shrink-0" />
+                  <div className="flex flex-col space-y-0.5">
+                    <a href="tel:+263778530166" className="hover:text-[#1C1C1E] font-medium transition-colors tabular-nums">
+                      +263 778 530 166
+                    </a>
+                    <a href="tel:+263784003527" className="hover:text-[#1C1C1E] font-medium transition-colors tabular-nums">
+                      +263 78 400 3527
+                    </a>
+                  </div>
+                </div>
+
+                {/* Emails */}
+                <div className="flex items-start gap-2">
+                  <Mail className="w-3.5 h-3.5 text-[#1E56A0] mt-0.5 shrink-0" />
+                  <div className="flex flex-col space-y-0.5">
+                    <a href="mailto:netrozim@gmail.com" className="hover:text-[#1C1C1E] font-medium transition-colors">
+                      netrozim@gmail.com
+                    </a>
+                    <a href="mailto:info@netrozim.co.zw" className="hover:text-[#1C1C1E] font-medium transition-colors">
+                      info@netrozim.co.zw
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
