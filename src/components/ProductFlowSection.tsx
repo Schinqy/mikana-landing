@@ -1,95 +1,136 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, ArrowDown, Bell, Send, CheckCircle2, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, ShieldCheck } from 'lucide-react';
+import { SamsungPhoneFrame } from './SamsungPhoneFrame';
 
 export function ProductFlowSection() {
-  const steps = [
-    {
-      num: '01',
-      title: 'CUSTOMER ASKS',
-      badge: 'WhatsApp Group',
-      content: '“Need a plumber in Avondale tomorrow.”',
-      note: 'Customer posts in a local trade or community group.',
-    },
-    {
-      num: '02',
-      title: 'MIKANA FINDS IT',
-      badge: 'Catalog Match',
-      content: 'Identified: Plumbing Repair (Avondale, Urgent)',
-      note: 'Mikana compares the request against your registered trade services.',
-    },
-    {
-      num: '03',
-      title: 'YOU GET AN INSTANT ALERT',
-      badge: 'Lock-screen',
-      content: 'New opportunity: Plumbing job in Avondale (Tomorrow, High urgency)',
-      note: 'Your phone buzzes immediately with full context.',
-    },
-    {
-      num: '04',
-      title: 'YOU RESPOND',
-      badge: '1-Tap Quote',
-      content: '“Hi, I can assist with the plumbing repair tomorrow...”',
-      note: 'Pre-drafted custom quote ready to dispatch via WhatsApp DM.',
-    },
-    {
-      num: '05',
-      title: 'OPPORTUNITY CAPTURED',
-      badge: 'Deal Pipeline',
-      content: 'Deal Stage: Quoted → Active Negotiation',
-      note: 'Tracked in your pipeline from first message to payment.',
-    },
-  ];
-
   return (
-    <section id="how-it-works" className="py-20 sm:py-28 bg-[#F8FAFC]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="py-20 sm:py-28 bg-[#FAFAF8] border-b border-[#E5E5E0]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="text-xs font-bold uppercase tracking-wider text-[#1E56A0]">
-            THE SIMPLE WORKFLOW
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#1E56A0]">
+            HOW MIKANA WORKS
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B2545] tracking-tight">
-            From a message to a customer opportunity.
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#1C1C1E] tracking-tight">
+            From group noise to won deal in 3 steps.
           </h2>
-          <p className="text-base text-[#486581]">
-            No complex setup. No complicated dashboards. Just five clear steps.
+          <p className="text-base sm:text-lg text-[#66645D] leading-relaxed">
+            See how Mikana intercepts buyer inquiries, alerts your phone, and drafts the response.
           </p>
         </div>
 
-        {/* 5-Step Horizontal (desktop) / Vertical (mobile) Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-stretch">
-          {steps.map((step, idx) => (
-            <div
-              key={step.num}
-              className="relative p-5 rounded-2xl bg-[#FFFFFF] border border-[#E2E8F0] shadow-xs flex flex-col justify-between space-y-4 hover:border-[#1E56A0] transition-colors"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-black text-[#1E56A0]">
-                    {step.num}
-                  </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#F1F5F9] text-[#486581]">
-                    {step.badge}
-                  </span>
-                </div>
-
-                <h3 className="text-xs font-extrabold uppercase tracking-wider text-[#0B2545] mt-2">
-                  {step.title}
-                </h3>
-
-                <div className="mt-3 p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-semibold text-[#0B2545] leading-snug">
-                  {step.content}
-                </div>
-              </div>
-
-              <p className="text-[11px] text-[#829AB1] leading-relaxed">
-                {step.note}
-              </p>
+        {/* ── Step 1: Live Group Radar Feed ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-6 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold font-mono">
+              STEP 01 // 24/7 GROUP RADAR
             </div>
-          ))}
+            <h3 className="text-2xl sm:text-4xl font-bold text-[#1C1C1E] tracking-tight leading-snug">
+              Every trade inquiry, qualified in real time.
+            </h3>
+            <p className="text-base text-[#66645D] leading-relaxed">
+              You don’t need to spend hours scrolling through WhatsApp groups. Mikana monitors all your trade channels in the background, checks incoming messages against what you sell, and filters by match accuracy and urgency.
+            </p>
+            <ul className="space-y-2.5 pt-2 text-sm text-[#1C1C1E]">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Monitors 5 to 50+ groups simultaneously</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Ranks inquiries with 90%–100% catalog match scoring</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Flags urgent, unquoted trade requests first</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="lg:col-span-6 flex justify-center">
+            <SamsungPhoneFrame
+              src="/screens/screen_home.jpg"
+              alt="Mikana Home Feed showing live buyer inquiries"
+            />
+          </div>
+        </div>
+
+        {/* ── Step 2: Instant Lock-Screen Notification ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-6 lg:order-2 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold font-mono">
+              STEP 02 // INSTANT ALERT
+            </div>
+            <h3 className="text-2xl sm:text-4xl font-bold text-[#1C1C1E] tracking-tight leading-snug">
+              Buzzes your phone before competitors notice.
+            </h3>
+            <p className="text-base text-[#66645D] leading-relaxed">
+              The moment a customer asks for what you offer, your phone alerts you with the exact item, category, and buyer request details. You don’t have to open WhatsApp to know someone is looking for your product.
+            </p>
+            <ul className="space-y-2.5 pt-2 text-sm text-[#1C1C1E]">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Instant lock-screen alert while you’re driving or busy</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Complete inquiry context at a glance</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Single tap opens the pre-drafted quote</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="lg:col-span-6 lg:order-1 flex justify-center">
+            <div className="max-w-md w-full rounded-3xl overflow-hidden shadow-2xl border border-[#2D3139] bg-[#16181D]">
+              <img
+                src="/screens/screenshot_notification.jpg"
+                alt="Mikana Lock Screen Notification"
+                className="w-full h-auto object-cover select-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ── Step 3: 1-Tap Catalog Quote Composer ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-6 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold font-mono">
+              STEP 03 // ONE-TAP DISPATCH
+            </div>
+            <h3 className="text-2xl sm:text-4xl font-bold text-[#1C1C1E] tracking-tight leading-snug">
+              Tap the alert. Your quote is already written.
+            </h3>
+            <p className="text-base text-[#66645D] leading-relaxed">
+              Mikana cross-checks your catalog, verifies your pricing and stock, and writes a professional WhatsApp reply. Tap <strong>Send via WhatsApp</strong> to open the buyer’s direct message with the quote pre-filled.
+            </p>
+            <ul className="space-y-2.5 pt-2 text-sm text-[#1C1C1E]">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Grounded in your actual pricing and warranty terms</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>Opens direct private chat so other group sellers don’t undercut</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+                <span>AutoPilot can send the quote automatically within 2 minutes</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="lg:col-span-6 flex justify-center">
+            <SamsungPhoneFrame
+              src="/screens/screen_quote.jpg"
+              alt="Mikana Quote Composer ready to dispatch"
+            />
+          </div>
         </div>
 
       </div>

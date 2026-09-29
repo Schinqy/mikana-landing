@@ -60,7 +60,7 @@ export function ScreenshotGallery() {
             A closer look at Mikana
           </h2>
           <p className="text-base text-[#486581]">
-            Real screenshots captured from the live Android build.
+            Screenshots captured from the live Android build.
           </p>
         </div>
 

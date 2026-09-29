@@ -1,96 +1,121 @@
 'use client';
 
 import React from 'react';
-import { Search, CheckCircle2, MessageCircle, AlertCircle } from 'lucide-react';
+import { XCircle, CheckCircle2, Clock, Zap } from 'lucide-react';
 
 export function ProblemSection() {
   return (
-    <section className="py-20 sm:py-28 border-y border-[#E2E8F0] bg-[#FFFFFF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-28 border-y border-[#E5E5E0] bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Large Statement */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-14">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B2545] tracking-tight leading-tight">
-            The customer isn’t missing.<br />
-            <span className="text-[#1E56A0]">The opportunity is.</span>
-          </h2>
-          <p className="text-base sm:text-lg text-[#486581] leading-relaxed">
-            Your next customer may already be asking for exactly what you sell. 
-            But their message can disappear into:
-          </p>
-
-          {/* 3 Metric Pills */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-[#0B2545]">
-            <span className="px-4 py-2 rounded-xl bg-[#F8FAFC] border border-[#CBD5E1]">
-              10 groups.
-            </span>
-            <span className="px-4 py-2 rounded-xl bg-[#F8FAFC] border border-[#CBD5E1]">
-              100 messages.
-            </span>
-            <span className="px-4 py-2 rounded-xl bg-[#F8FAFC] border border-[#CBD5E1]">
-              1 busy day.
-            </span>
+        {/* Header Statement */}
+        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#1E56A0]">
+            WHY SPEED MATTERS
           </div>
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#1C1C1E] tracking-tight leading-tight">
+            The customer isn’t missing.<br />
+            <span className="text-[#1E56A0]">The speed is.</span>
+          </h2>
+          <p className="text-base sm:text-lg text-[#66645D] leading-relaxed max-w-2xl mx-auto">
+            In WhatsApp trade groups, the first business with an accurate quote wins the deal. Replying a few hours late means the customer has already bought from your competitor.
+          </p>
         </div>
 
-        {/* Visual WhatsApp Stream with Highlighted Opportunity */}
-        <div className="max-w-xl mx-auto p-4 sm:p-6 rounded-3xl bg-[#F4F7FB] border border-[#E2E8F0] shadow-xs">
+        {/* Without Mikana vs With Mikana Comparison */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           
-          <div className="text-xs font-bold text-[#486581] mb-3 flex items-center justify-between">
-            <span className="flex items-center gap-1.5">
-              <MessageCircle className="w-4 h-4 text-[#075E54]" />
-              Avondale Residents & Trade Chat
-            </span>
-            <span className="text-[#829AB1]">Active stream</span>
-          </div>
-
-          <div className="space-y-2.5 font-sans text-xs">
-            {/* Ordinary message 1 */}
-            <div className="p-2.5 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] opacity-50">
-              <span className="font-bold text-[#486581]">Kuda: </span>
-              <span className="text-[#829AB1]">Good morning everyone, hope everyone has a productive week!</span>
-            </div>
-
-            {/* Ordinary message 2 */}
-            <div className="p-2.5 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] opacity-50">
-              <span className="font-bold text-[#486581]">Farai: </span>
-              <span className="text-[#829AB1]">Did the ZESA power return in section 3? Still off this side.</span>
-            </div>
-
-            {/* ── THE HIGHLIGHTED OPPORTUNITY MESSAGE ── */}
-            <div className="relative p-3.5 rounded-2xl bg-[#FFFFFF] border-2 border-[#1E56A0] shadow-sm">
-              <div className="absolute -top-2.5 right-3 px-2 py-0.5 rounded-md bg-[#1E56A0] text-white text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1">
-                <Search className="w-3 h-3" />
-                <span>Mikana Detected</span>
+          {/* Card 1: Without Mikana */}
+          <div className="rounded-3xl border border-[#FCA5A5]/60 bg-[#FEF2F2]/40 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEE2E2] text-[#DC2626] text-xs font-semibold">
+                  <XCircle className="w-3.5 h-3.5" />
+                  <span>Without Mikana</span>
+                </span>
+                <span className="text-xs font-medium text-[#991B1B] flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>Replying 3 hours late</span>
+                </span>
               </div>
 
-              <div className="font-bold text-[#075E54] text-xs">Brian M. (Avondale)</div>
-              <p className="text-sm font-bold text-[#0B2545] mt-1 leading-snug">
-                “Need someone to fix a leaking toilet in Avondale tomorrow.”
-              </p>
-              <div className="text-[10px] text-[#829AB1] mt-1">11:04 AM</div>
+              {/* Chat Simulation */}
+              <div className="rounded-2xl bg-white border border-[#FCA5A5]/40 p-4 space-y-3 font-sans text-xs shadow-2xs">
+                <div className="text-[11px] text-[#71717A] text-center border-b border-[#F4F4F0] pb-2 font-mono">
+                  WhatsApp Group • 11:05 AM
+                </div>
+                
+                <div className="p-2.5 rounded-xl bg-[#F4F4F0] text-[#1C1C1E] max-w-[85%]">
+                  <div className="font-bold text-[11px] text-[#4B5563]">Buyer (in group):</div>
+                  <div className="text-[13px] mt-0.5">“Anyone selling a Nissan Sunny engine? Need one urgently.”</div>
+                </div>
+
+                <div className="pt-2 text-[11px] text-[#DC2626] font-semibold text-center italic">
+                  — 3 hours later (you finally check the group) —
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#DCF8C6] text-[#1C1C1E] ml-auto max-w-[85%]">
+                  <div className="font-bold text-[11px] text-[#075E54]">You (2:15 PM):</div>
+                  <div className="text-[13px] mt-0.5">“Hi, do you still need the engine? We have one in stock.”</div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#F4F4F0] text-[#1C1C1E] max-w-[85%]">
+                  <div className="font-bold text-[11px] text-[#4B5563]">Buyer (2:18 PM):</div>
+                  <div className="text-[13px] mt-0.5 font-medium">“Ah sorry mkoma, already got it from someone who replied 15 minutes after I posted. Payment done 🙏”</div>
+                </div>
+              </div>
             </div>
 
-            {/* Ordinary message 3 */}
-            <div className="p-2.5 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] opacity-50">
-              <span className="font-bold text-[#486581]">Tariro: </span>
-              <span className="text-[#829AB1]">Meeting is still scheduled for 2:30 PM. See you then.</span>
-            </div>
-
-            {/* Ordinary message 4 */}
-            <div className="p-2.5 rounded-xl bg-[#FFFFFF] border border-[#E2E8F0] opacity-50">
-              <span className="font-bold text-[#486581]">Chipo: </span>
-              <span className="text-[#829AB1]">Thanks Farai, power just came back here now.</span>
+            <div className="pt-2 border-t border-[#FCA5A5]/40 flex items-center justify-between text-xs">
+              <span className="text-[#991B1B] font-semibold">Outcome: Deal lost to competitor</span>
+              <span className="text-[#DC2626] font-bold">Lost sale</span>
             </div>
           </div>
 
-          {/* Callout */}
-          <div className="mt-5 p-4 rounded-2xl bg-[#0B2545] text-white text-center space-y-1">
-            <div className="text-base sm:text-lg font-bold">
-              That message is an opportunity.
+          {/* Card 2: With Mikana */}
+          <div className="rounded-3xl border border-[#BBF7D0] bg-[#F0FDF4]/50 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DCFCE7] text-[#16A34A] text-xs font-semibold">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>With Mikana</span>
+                </span>
+                <span className="text-xs font-medium text-[#166534] flex items-center gap-1">
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>Replying in 45 seconds</span>
+                </span>
+              </div>
+
+              {/* Chat Simulation */}
+              <div className="rounded-2xl bg-white border border-[#BBF7D0] p-4 space-y-3 font-sans text-xs shadow-2xs">
+                <div className="text-[11px] text-[#71717A] text-center border-b border-[#F4F4F0] pb-2 font-mono">
+                  WhatsApp Group • 11:05 AM
+                </div>
+                
+                <div className="p-2.5 rounded-xl bg-[#F4F4F0] text-[#1C1C1E] max-w-[85%]">
+                  <div className="font-bold text-[11px] text-[#4B5563]">Buyer (11:05 AM):</div>
+                  <div className="text-[13px] mt-0.5">“Anyone selling a Nissan Sunny engine? Need one urgently.”</div>
+                </div>
+
+                <div className="pt-2 text-[11px] text-[#16A34A] font-semibold text-center">
+                  ⚡ Mikana alerts your phone at 11:05 AM with drafted quote
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#DCF8C6] text-[#1C1C1E] ml-auto max-w-[85%]">
+                  <div className="font-bold text-[11px] text-[#075E54]">You (11:06 AM):</div>
+                  <div className="text-[13px] mt-0.5">“Hi Lui, yes we have engine parts available for the Nissan Sunny with 6-month warranty. Ready for dispatch.”</div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#F4F4F0] text-[#1C1C1E] max-w-[85%]">
+                  <div className="font-bold text-[11px] text-[#4B5563]">Buyer (11:08 AM):</div>
+                  <div className="text-[13px] mt-0.5 font-medium">“Great! Where is your shop located? Sending my driver right now.”</div>
+                </div>
+              </div>
             </div>
-            <div className="text-sm text-blue-200 font-semibold">
-              Mikana finds it.
+
+            <div className="pt-2 border-t border-[#BBF7D0] flex items-center justify-between text-xs">
+              <span className="text-[#166534] font-semibold">Outcome: Deal won before competitors see it</span>
+              <span className="text-[#16A34A] font-bold">Deal closed</span>
             </div>
           </div>
 

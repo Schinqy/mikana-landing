@@ -46,7 +46,7 @@ export function InteractiveDemoSection() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
           <div className="text-xs font-bold uppercase tracking-wider text-[#1E56A0]">
-            REAL PRODUCT DEMONSTRATION
+            PRODUCT WALKTHROUGH
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B2545] tracking-tight">
             See Mikana actually do it.

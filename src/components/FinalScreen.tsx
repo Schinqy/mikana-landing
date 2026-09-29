@@ -81,7 +81,7 @@ export function FinalScreen() {
             <div className="flex flex-wrap items-center gap-6">
               <a href="#how-it-works" className="hover:text-[#1C1C1E] transition-colors">How It Works</a>
               <a href="#demo" className="hover:text-[#1C1C1E] transition-colors">Live Flow</a>
-              <a href="#examples" className="hover:text-[#1C1C1E] transition-colors">Real Examples</a>
+              <a href="#examples" className="hover:text-[#1C1C1E] transition-colors">Examples</a>
               <a href="#try-it" className="hover:text-[#1C1C1E] transition-colors">Try Mikana</a>
               <a href="#faq" className="hover:text-[#1C1C1E] transition-colors">FAQ</a>
             </div>

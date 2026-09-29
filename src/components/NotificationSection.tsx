@@ -33,7 +33,7 @@ export function NotificationSection() {
             <div className="rounded-3xl overflow-hidden shadow-xl border border-[#2D3139] bg-[#16181D]">
               <img
                 src="/screens/screenshot_notification.jpg"
-                alt="Real Mikana Lock-Screen Notification: New Inquiry Automotive for Nissan Sunny"
+                alt="Mikana Lock-Screen Notification: New Inquiry Automotive for Nissan Sunny"
                 className="w-full h-auto object-cover select-none"
               />
             </div>
@@ -57,7 +57,7 @@ export function NotificationSection() {
 
             <div className="relative rounded-3xl p-3 bg-white border border-[#E5E5E0] shadow-xl max-w-xs sm:max-w-sm w-full">
               <div className="text-[11px] font-bold text-[#71717A] mb-2 px-1 flex items-center justify-between">
-                <span>Real Quote Screen</span>
+                <span>Quote Composer</span>
                 <span className="text-[#16A34A] flex items-center gap-1 font-semibold">
                   <Check className="w-3.5 h-3.5" />
                   <span>Ready to send</span>
@@ -66,7 +66,7 @@ export function NotificationSection() {
               <div className="rounded-2xl overflow-hidden border border-[#EBEBE6]">
                 <img
                   src="/screens/screen_quote.jpg"
-                  alt="Real Mikana Quote Screen"
+                  alt="Mikana Quote Composer Screen"
                   className="w-full h-auto object-cover select-none"
                 />
               </div>

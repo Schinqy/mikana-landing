@@ -27,7 +27,7 @@ export function Navbar() {
               How It Works
             </a>
             <a href="#examples" className="hover:text-[#1C1C1E] transition-colors">
-              Real Examples
+              Examples
             </a>
             <a href="#demo" className="hover:text-[#1C1C1E] transition-colors">
               Live Flow
