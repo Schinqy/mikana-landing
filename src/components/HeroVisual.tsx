@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { SamsungPhoneFrame } from './SamsungPhoneFrame';
 
 const SWAP_WORDS = ['customer', 'client', 'deal', 'buyer', 'sale'];
@@ -10,6 +11,7 @@ export function HeroVisual() {
   const [subIndex, setSubIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const [activeScreen, setActiveScreen] = useState<'home' | 'quote'>('home');
 
   useEffect(() => {
     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -70,17 +72,18 @@ export function HeroVisual() {
               reply for you.
             </p>
 
-            {/* Action Buttons */}
-            <div className="mt-7 flex flex-wrap items-center gap-3">
+            {/* Refined Simple & Tactile Action Buttons */}
+            <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <a
                 href="#try-it"
-                className="px-6 sm:px-7 py-3 rounded-full text-sm font-medium text-white bg-[#1C1C1E] hover:bg-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E56A0] shadow-2xs"
+                className="group inline-flex items-center justify-center px-7 py-3.5 rounded-full text-[14px] font-medium text-white bg-[#1C1C1E] hover:bg-black active:scale-[0.98] transition-all duration-150 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(28,28,30,0.12)]"
               >
-                Try Mikana
+                <span>Try Mikana</span>
+                <ArrowRight className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#how-it-works"
-                className="px-5 sm:px-6 py-3 rounded-full text-sm font-medium text-[#1C1C1E] bg-white border border-[#E5E5E0] hover:bg-[#F5F5F0] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E56A0] shadow-2xs"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-[14px] font-medium text-[#1C1C1E] bg-white hover:bg-[#FAF9F6] border border-[#E5E5E0] hover:border-[#D0D0CA] active:scale-[0.98] transition-all duration-150 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
               >
                 See what it can do
               </a>
@@ -146,17 +149,25 @@ export function HeroVisual() {
                       <span>Real lock-screen alert</span>
                       <span className="text-[11px] text-[#1E56A0] font-semibold">Live Mikana notification</span>
                     </div>
-                    <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-[#2D3139] bg-[#16181D]">
+                    <button
+                      type="button"
+                      onClick={() => setActiveScreen('quote')}
+                      className="w-full text-left rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-[#2D3139] bg-[#16181D] hover:scale-[1.01] transition-transform duration-200 cursor-pointer group"
+                    >
                       <img
                         src="/screens/screenshot_notification.jpg"
                         alt="Real Mikana Lock Screen Notification: New Inquiry Automotive for Nissan Sunny"
                         className="w-full h-auto object-cover select-none"
                       />
-                    </div>
-                    <div className="mt-2 text-xs text-[#1E56A0] font-medium flex items-center gap-1.5">
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveScreen('quote')}
+                      className="mt-2 text-xs text-[#1E56A0] font-medium flex items-center gap-1.5 hover:underline cursor-pointer"
+                    >
                       <span>Tap alert to open drafted WhatsApp quote</span>
                       <span>→</span>
-                    </div>
+                    </button>
                   </div>
                 </div>
 
@@ -165,13 +176,39 @@ export function HeroVisual() {
 
             {/* ── Mobile-Only Phone Frame (Keeps flow intact on mobile scrolling!) ── */}
             <div className="lg:hidden mt-10 pt-6 border-t border-[#EBEBE6] flex flex-col items-center">
-              <div className="text-xs font-semibold text-[#1E56A0] uppercase tracking-wider mb-4">
-                What opens when you tap:
+              <div className="flex items-center gap-1 p-1 rounded-full bg-[#EFEFEA] border border-[#E0E0DA] text-xs font-medium text-[#71717A] mb-4 shadow-2xs">
+                <button
+                  type="button"
+                  onClick={() => setActiveScreen('home')}
+                  className={`px-3.5 py-1 rounded-full transition-all ${
+                    activeScreen === 'home'
+                      ? 'bg-white text-[#1C1C1E] font-semibold shadow-xs'
+                      : 'hover:text-[#1C1C1E]'
+                  }`}
+                >
+                  Home Feed
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveScreen('quote')}
+                  className={`px-3.5 py-1 rounded-full transition-all ${
+                    activeScreen === 'quote'
+                      ? 'bg-white text-[#1C1C1E] font-semibold shadow-xs'
+                      : 'hover:text-[#1C1C1E]'
+                  }`}
+                >
+                  Drafted Quote
+                </button>
               </div>
+
               <SamsungPhoneFrame
-                src="/screens/screen_quote.jpg"
-                alt="Real Mikana WhatsApp quote screen"
-                caption="Live screen: Instant WhatsApp quote ready to send with 1 tap"
+                src={activeScreen === 'home' ? '/screens/screen_home.jpg' : '/screens/screen_quote.jpg'}
+                alt={activeScreen === 'home' ? 'Mikana Home Screen Live Feed' : 'Real Mikana WhatsApp quote screen'}
+                caption={
+                  activeScreen === 'home'
+                    ? 'Live Mikana screen: Buyer inquiries detected across WhatsApp groups in real time'
+                    : 'Live Mikana screen: Instant WhatsApp quote ready to send with 1 tap'
+                }
               />
             </div>
 
@@ -211,11 +248,42 @@ export function HeroVisual() {
 
           {/* ── Right Column (Desktop Sticky): Real app screen stays in view when scrolling ── */}
           <div className="hidden lg:block lg:col-span-5">
-            <div className="sticky top-12 flex justify-center">
+            <div className="sticky top-12 flex flex-col items-center">
+              
+              {/* Segmented Screen Switcher Pill */}
+              <div className="flex items-center gap-1 p-1 rounded-full bg-[#EFEFEA] border border-[#E0E0DA] text-xs font-medium text-[#71717A] mb-4 shadow-2xs">
+                <button
+                  type="button"
+                  onClick={() => setActiveScreen('home')}
+                  className={`px-3.5 py-1 rounded-full transition-all cursor-pointer ${
+                    activeScreen === 'home'
+                      ? 'bg-white text-[#1C1C1E] font-semibold shadow-xs'
+                      : 'hover:text-[#1C1C1E]'
+                  }`}
+                >
+                  Home Feed
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveScreen('quote')}
+                  className={`px-3.5 py-1 rounded-full transition-all cursor-pointer ${
+                    activeScreen === 'quote'
+                      ? 'bg-white text-[#1C1C1E] font-semibold shadow-xs'
+                      : 'hover:text-[#1C1C1E]'
+                  }`}
+                >
+                  Drafted Quote
+                </button>
+              </div>
+
               <SamsungPhoneFrame
-                src="/screens/screen_quote.jpg"
-                alt="Real Mikana WhatsApp quote screen"
-                caption="Real Mikana screen: Instant WhatsApp quote grounded in your catalog"
+                src={activeScreen === 'home' ? '/screens/screen_home.jpg' : '/screens/screen_quote.jpg'}
+                alt={activeScreen === 'home' ? 'Mikana Home Screen Live Feed' : 'Real Mikana WhatsApp quote screen'}
+                caption={
+                  activeScreen === 'home'
+                    ? 'Live Mikana screen: Real-time buyer inquiries intercepted across WhatsApp groups'
+                    : 'Real Mikana screen: Instant WhatsApp quote grounded in your catalog'
+                }
               />
             </div>
           </div>

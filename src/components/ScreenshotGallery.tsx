@@ -9,7 +9,7 @@ export function ScreenshotGallery() {
       title: 'Opportunity found',
       caption: 'See exactly what the customer needs.',
       tag: 'Live Buyer Inquiries',
-      src: '/screens/screen_radar_feed.png',
+      src: '/screens/screen_home.jpg',
     },
     {
       title: 'Instant alert',
