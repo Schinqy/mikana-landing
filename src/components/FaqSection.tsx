@@ -18,6 +18,10 @@ export function FaqSection() {
       a: 'No. The business chooses the groups it wants Mikana to monitor.',
     },
     {
+      q: 'What about privacy? Does Mikana read my private chats?',
+      a: 'No. Mikana only monitors the specific WhatsApp trade groups you explicitly choose to monitor. Your private 1-on-1 chats, calls, and family conversations are never accessed, read, or stored. Multi-device pairing uses end-to-end Signal protocol encryption.',
+    },
+    {
       q: 'How does Mikana know what I sell?',
       a: 'You provide information about your products, services and capabilities so Mikana knows what kinds of opportunities are relevant to you.',
     },

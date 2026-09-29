@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
 
 export function FinalScreen() {
@@ -84,12 +85,15 @@ export function FinalScreen() {
 
           {/* Bottom row: Links & Copyright */}
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#71717A]">
-            <div className="flex flex-wrap items-center gap-6">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <a href="#how-it-works" className="hover:text-[#1C1C1E] transition-colors">How It Works</a>
               <a href="#demo" className="hover:text-[#1C1C1E] transition-colors">Live Flow</a>
               <a href="#examples" className="hover:text-[#1C1C1E] transition-colors">Examples</a>
               <a href="#try-it" className="hover:text-[#1C1C1E] transition-colors">Try Mikana</a>
               <a href="#faq" className="hover:text-[#1C1C1E] transition-colors">FAQ</a>
+              <Link href="/privacy" className="hover:text-[#1C1C1E] transition-colors font-medium">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-[#1C1C1E] transition-colors font-medium">Terms of Service</Link>
+              <Link href="/delete-account" className="hover:text-[#DC2626] transition-colors font-medium">Delete Account</Link>
             </div>
             <div>
               © {new Date().getFullYear()} Mikana • Harare, Zimbabwe
