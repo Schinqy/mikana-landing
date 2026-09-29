@@ -6,7 +6,6 @@ import { ProductFlowSection } from '@/components/ProductFlowSection';
 import { InteractiveDemoSection } from '@/components/InteractiveDemoSection';
 import { NotificationSection } from '@/components/NotificationSection';
 import { AutoPilotSection } from '@/components/AutoPilotSection';
-import { PipelineSection } from '@/components/PipelineSection';
 import { RealExamplesSection } from '@/components/RealExamplesSection';
 import { WhoIsThisForSection } from '@/components/WhoIsThisForSection';
 import { BiggerIdeaSection } from '@/components/BiggerIdeaSection';
@@ -41,10 +40,7 @@ export default function Home() {
         {/* Section 6: AutoPilot ("What happens when you're too busy to answer?") */}
         <AutoPilotSection />
 
-        {/* Section 7: Beyond Alerts ("Finding the opportunity is only the beginning." Understand -> Respond -> Follow up) */}
-        <PipelineSection />
-
-        {/* Section 8: Real Examples (Spare parts, plumbing, cement, beans, electrical) */}
+        {/* Section 7: Real Examples (Spare parts, plumbing, cement, beans, electrical) */}
         <RealExamplesSection />
 
         {/* Section 9: Who Is This For? ("Do customers find you through WhatsApp?") */}

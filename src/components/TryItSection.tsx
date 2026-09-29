@@ -36,13 +36,13 @@ export function TryItSection() {
   };
 
   return (
-    <section id="try-it" className="py-20 sm:py-28 bg-[#FAFAF8] border-t border-[#EBEBE6]">
+    <section id="try-it" className="py-12 sm:py-16 bg-[#FAFAF8] border-t border-[#EBEBE6]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
-          <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1E56A0]">
-            [ EARLY ACCESS ]
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-semibold">
+            Early Access
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-[#1C1C1E] tracking-tight">
             Ready to never miss your next customer?

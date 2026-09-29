@@ -33,13 +33,13 @@ export function RealExamplesSection() {
   ];
 
   return (
-    <section id="examples" className="py-20 sm:py-28 border-t border-[#E2E8F0] bg-[#FFFFFF]">
+    <section id="examples" className="py-12 sm:py-16 border-t border-[#E2E8F0] bg-[#FFFFFF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="text-xs font-bold uppercase tracking-wider text-[#1E56A0]">
-            REAL-WORLD TRADE SCENARIOS
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-semibold">
+            Real Examples
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B2545] tracking-tight">
             What could Mikana find for your business?

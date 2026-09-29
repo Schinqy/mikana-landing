@@ -7,7 +7,7 @@ export function FinalScreen() {
   return (
     <footer className="border-t border-[#E5E5E0] bg-[#FAFAF8] text-[#1C1C1E]">
       {/* Pre-Footer CTA */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 text-center space-y-5">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center space-y-4">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C1E] leading-tight">
           Your next customer might already be asking for you.
         </h2>

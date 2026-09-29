@@ -6,13 +6,13 @@ import { SamsungPhoneFrame } from './SamsungPhoneFrame';
 
 export function ProductFlowSection() {
   return (
-    <section id="how-it-works" className="py-20 sm:py-28 bg-[#FAFAF8] border-b border-[#E5E5E0]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+    <section id="how-it-works" className="py-12 sm:py-16 bg-[#FAFAF8] border-b border-[#E5E5E0]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="font-mono text-xs font-semibold uppercase tracking-wider text-[#1E56A0]">
-            HOW MIKANA WORKS
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-semibold">
+            How It Works
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-[#1C1C1E] tracking-tight">
             From group noise to won deal in 3 steps.
@@ -25,8 +25,13 @@ export function ProductFlowSection() {
         {/* ── Step 1: Live Group Radar Feed ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-6 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold font-mono">
-              STEP 01 // 24/7 GROUP RADAR
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold">
+                Step 1
+              </span>
+              <span className="text-xs font-semibold text-[#66645D]">
+                24/7 Group Radar
+              </span>
             </div>
             <h3 className="text-2xl sm:text-4xl font-bold text-[#1C1C1E] tracking-tight leading-snug">
               Every trade inquiry, qualified in real time.
@@ -61,8 +66,13 @@ export function ProductFlowSection() {
         {/* ── Step 2: Instant Lock-Screen Notification ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-6 lg:order-2 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold font-mono">
-              STEP 02 // INSTANT ALERT
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold">
+                Step 2
+              </span>
+              <span className="text-xs font-semibold text-[#66645D]">
+                Instant Alert
+              </span>
             </div>
             <h3 className="text-2xl sm:text-4xl font-bold text-[#1C1C1E] tracking-tight leading-snug">
               Buzzes your phone before competitors notice.
@@ -100,8 +110,13 @@ export function ProductFlowSection() {
         {/* ── Step 3: 1-Tap Catalog Quote Composer ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-6 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold font-mono">
-              STEP 03 // ONE-TAP DISPATCH
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-0.5 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-bold">
+                Step 3
+              </span>
+              <span className="text-xs font-semibold text-[#66645D]">
+                One-Tap Dispatch
+              </span>
             </div>
             <h3 className="text-2xl sm:text-4xl font-bold text-[#1C1C1E] tracking-tight leading-snug">
               Tap the alert. Your quote is already written.

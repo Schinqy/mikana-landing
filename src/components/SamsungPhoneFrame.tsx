@@ -19,7 +19,7 @@ export function SamsungPhoneFrame({
   return (
     <div className={`relative flex flex-col items-center ${className}`}>
       {/* Outer Phone Shell - Sleek Samsung Galaxy Style Bezel */}
-      <div className="relative w-[260px] xs:w-[280px] sm:w-[320px] max-w-[85vw] aspect-[9/19.5] rounded-[40px] sm:rounded-[44px] bg-[#16181D] p-[6px] sm:p-[7px] shadow-[0_25px_60px_-15px_rgba(11,37,69,0.22),0_0_0_1px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:scale-[1.01]">
+      <div className="relative w-[240px] xs:w-[260px] sm:w-[280px] lg:w-[260px] xl:w-[295px] max-w-[85vw] aspect-[9/19.5] rounded-[36px] sm:rounded-[42px] bg-[#16181D] p-[5px] sm:p-[6px] shadow-[0_25px_60px_-15px_rgba(11,37,69,0.22),0_0_0_1px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:scale-[1.01]">
         
         {/* Hardware side buttons (Right edge: Power + Volume) */}
         <div className="absolute -right-[3px] top-24 sm:top-28 w-[3px] h-10 sm:h-12 bg-[#2D3139] rounded-r-xs" />
