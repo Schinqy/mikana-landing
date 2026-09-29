@@ -56,11 +56,11 @@ export function FinalScreen() {
                 <div className="flex items-start gap-2">
                   <Phone className="w-3.5 h-3.5 text-[#1E56A0] mt-0.5 shrink-0" />
                   <div className="flex flex-col space-y-0.5">
-                    <a href="tel:+263778530166" className="hover:text-[#1C1C1E] font-medium transition-colors tabular-nums">
-                      +263 778 530 166
+                    <a href="tel:+263776432893" className="hover:text-[#1C1C1E] font-medium transition-colors tabular-nums">
+                      +263 776 432 893
                     </a>
-                    <a href="tel:+263784003527" className="hover:text-[#1C1C1E] font-medium transition-colors tabular-nums">
-                      +263 78 400 3527
+                    <a href="tel:+263780331740" className="hover:text-[#1C1C1E] font-medium transition-colors tabular-nums">
+                      +263 780 331 740
                     </a>
                   </div>
                 </div>
@@ -69,11 +69,11 @@ export function FinalScreen() {
                 <div className="flex items-start gap-2">
                   <Mail className="w-3.5 h-3.5 text-[#1E56A0] mt-0.5 shrink-0" />
                   <div className="flex flex-col space-y-0.5">
-                    <a href="mailto:netrozim@gmail.com" className="hover:text-[#1C1C1E] font-medium transition-colors">
-                      netrozim@gmail.com
+                    <a href="mailto:info@lui.co.zw" className="hover:text-[#1C1C1E] font-medium transition-colors">
+                      info@lui.co.zw
                     </a>
-                    <a href="mailto:info@netrozim.co.zw" className="hover:text-[#1C1C1E] font-medium transition-colors">
-                      info@netrozim.co.zw
+                    <a href="mailto:luitechzw@gmail.com" className="hover:text-[#1C1C1E] font-medium transition-colors">
+                      luitechzw@gmail.com
                     </a>
                   </div>
                 </div>
