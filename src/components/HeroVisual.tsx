@@ -8,19 +8,35 @@ const SWAP_WORDS = ['customer', 'client', 'deal', 'buyer', 'sale'];
 
 export function HeroVisual() {
   const [wordIndex, setWordIndex] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
+  const [subIndex, setSubIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFlipping(true);
-      setTimeout(() => {
-        setWordIndex((prev) => (prev + 1) % SWAP_WORDS.length);
-        setIsFlipping(false);
-      }, 220);
-    }, 2400);
+    // When full word is typed, pause for 1.8s
+    if (!isDeleting && subIndex === SWAP_WORDS[wordIndex].length) {
+      const timeout = setTimeout(() => setIsDeleting(true), 1800);
+      return () => clearTimeout(timeout);
+    }
 
-    return () => clearInterval(interval);
-  }, []);
+    // When word is fully deleted, pause 250ms and switch to next word
+    if (isDeleting && subIndex === 0) {
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % SWAP_WORDS.length);
+      }, 250);
+      return () => clearTimeout(timeout);
+    }
+
+    // Typing speed: 95ms | Deleting speed: 45ms
+    const speed = isDeleting ? 45 : 95;
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (isDeleting ? -1 : 1));
+    }, speed);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, isDeleting, wordIndex]);
+
+  const currentTypedWord = SWAP_WORDS[wordIndex].substring(0, subIndex);
 
   return (
     <section id="overview" className="pt-5 pb-16 sm:pt-8 sm:pb-24 bg-[#FAFAF8]">
@@ -31,17 +47,11 @@ export function HeroVisual() {
           <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold tracking-[-0.035em] text-[#1C1C1E] leading-[1.12] max-w-3xl mx-auto">
             What if you never missed <br className="hidden sm:inline" />
             your next potential{' '}
-            <span className="relative inline-block text-[#1E56A0] font-bold">
-              <span
-                className={`inline-block transition-all duration-250 ease-out transform ${
-                  isFlipping
-                    ? 'opacity-0 -translate-y-2 scale-95 blur-[1px]'
-                    : 'opacity-100 translate-y-0 scale-100 blur-0'
-                }`}
-              >
-                {SWAP_WORDS[wordIndex]}
-              </span>
-              <span className="absolute left-0 -bottom-1 w-full h-[2.5px] bg-[#1E56A0]/30 rounded-full" />
+            <span className="relative inline-flex items-baseline text-[#1E56A0] font-bold">
+              <span>{currentTypedWord}</span>
+              {/* Typewriter Blinking Cursor */}
+              <span className="inline-block w-[2.5px] h-[0.82em] bg-[#1E56A0] ml-1 align-baseline animate-pulse rounded-full" />
+              <span className="absolute left-0 -bottom-1 w-full h-[2.5px] bg-[#1E56A0]/25 rounded-full" />
             </span>
             ?
           </h1>
