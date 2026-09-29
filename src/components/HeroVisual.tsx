@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, MapPin, Bell, Check, Sparkles, Send } from 'lucide-react';
 import { SamsungPhoneFrame } from './SamsungPhoneFrame';
 
 const SWAP_WORDS = ['customer', 'client', 'deal', 'buyer', 'sale'];
@@ -10,15 +9,22 @@ export function HeroVisual() {
   const [wordIndex, setWordIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    // When full word is typed, pause for 1.8s
+    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  useEffect(() => {
+    if (reduced) return;
+
+    // Full word typed: hold for 1.8s
     if (!isDeleting && subIndex === SWAP_WORDS[wordIndex].length) {
       const timeout = setTimeout(() => setIsDeleting(true), 1800);
       return () => clearTimeout(timeout);
     }
 
-    // When word is fully deleted, pause 250ms and switch to next word
+    // Word deleted: pause, then next word
     if (isDeleting && subIndex === 0) {
       const timeout = setTimeout(() => {
         setIsDeleting(false);
@@ -27,180 +33,133 @@ export function HeroVisual() {
       return () => clearTimeout(timeout);
     }
 
-    // Typing speed: 95ms | Deleting speed: 45ms
     const speed = isDeleting ? 45 : 95;
     const timeout = setTimeout(() => {
       setSubIndex((prev) => prev + (isDeleting ? -1 : 1));
     }, speed);
-
     return () => clearTimeout(timeout);
-  }, [subIndex, isDeleting, wordIndex]);
+  }, [subIndex, isDeleting, wordIndex, reduced]);
 
-  const currentTypedWord = SWAP_WORDS[wordIndex].substring(0, subIndex);
+  const typedWord = reduced ? SWAP_WORDS[0] : SWAP_WORDS[wordIndex].substring(0, subIndex);
 
   return (
-    <section id="overview" className="pt-5 pb-16 sm:pt-8 sm:pb-24 bg-[#FAFAF8]">
+    <section id="overview" className="pt-4 pb-16 sm:pt-8 sm:pb-24 bg-[#FAFAF8] overflow-x-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* ── MAIN EDITORIAL HEADLINE & SUBTITLE ── */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 sm:space-y-5">
-          <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-semibold tracking-[-0.035em] text-[#1C1C1E] leading-[1.12] max-w-3xl mx-auto">
-            What if you never missed <br className="hidden sm:inline" />
-            your next potential{' '}
-            <span className="relative inline-flex items-baseline text-[#1E56A0] font-bold">
-              <span>{currentTypedWord}</span>
-              {/* Typewriter Blinking Cursor */}
-              <span className="inline-block w-[2.5px] h-[0.82em] bg-[#1E56A0] ml-1 align-baseline animate-pulse rounded-full" />
-              <span className="absolute left-0 -bottom-1 w-full h-[2.5px] bg-[#1E56A0]/25 rounded-full" />
-            </span>
-            ?
-          </h1>
-
-          <p className="text-base sm:text-[17.5px] text-[#3F3E3A] max-w-2xl mx-auto leading-relaxed font-medium">
-            Mikana watches <span className="text-[#16A34A] font-semibold">WhatsApp</span> for <span className="text-[#1C1C1E] font-semibold">real opportunities</span> that match what you sell, then brings them straight to you with <span className="text-[#1E56A0] font-semibold">instant notifications</span>. And when you're busy, <span className="text-[#1E56A0] font-semibold">AutoPilot</span> can respond for you.
-          </p>
-
-          {/* Action Buttons - Moonjar pill style */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <a
-              href="#try-it"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full text-[14px] font-medium text-white bg-[#1C1C1E] hover:bg-black transition-all shadow-xs flex items-center justify-center"
-            >
-              <span>Try Mikana</span>
-            </a>
-            <a
-              href="#how-it-works"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-full text-[14px] font-medium text-[#1C1C1E] bg-white border border-[#E5E5E0] hover:bg-[#F5F5F0] transition-all flex items-center justify-center gap-1.5 shadow-xs"
-            >
-              <span>See what it can do</span>
-              <span className="text-[#8A8880] text-base leading-none">›</span>
-            </a>
-          </div>
-        </div>
-
-        {/* ── MOONJAR STYLE STUDIO WINDOW FRAME ── */}
-        <div className="mt-8 sm:mt-11 max-w-5xl mx-auto">
-          <div className="rounded-3xl bg-white border border-[#E5E5E0] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)] overflow-hidden">
+        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-12 items-start">
+          
+          {/* ── Left Column: Pitch, Interactive Sequence & Details ── */}
+          <div className="lg:col-span-7">
             
-            {/* macOS Studio Top Window Bar */}
-            <div className="px-5 py-3.5 bg-[#FAF9F6] border-b border-[#EBEBE6] flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
-                <span className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
-                <span className="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
-              </div>
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-bold tracking-[-0.035em] text-[#1C1C1E] leading-[1.12] sm:leading-[1.08]">
+              What if you never missed your next potential{' '}
+              <span className="relative inline-block text-[#1E56A0] min-w-[1ch] text-left">
+                <span>{typedWord || '\u00A0'}</span>
+                {!reduced && (
+                  <span className="inline-block w-[2.5px] h-[0.8em] bg-[#1E56A0] ml-1 align-baseline animate-pulse rounded-full" />
+                )}
+                <span className="absolute left-0 -bottom-1 w-full h-[2.5px] bg-[#1E56A0]/25 rounded-full" />
+              </span>
+              ?
+            </h1>
 
-              <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E5E5E0] text-[11px] font-medium text-[#55544E] shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Harare Wholesale & Spares Trade • Live Opportunity Detection</span>
-              </div>
+            {/* Thickened Subtext with pure color highlights */}
+            <p className="mt-5 sm:mt-6 max-w-xl text-[17px] sm:text-[18.5px] font-semibold text-[#1C1C1E] leading-relaxed">
+              Mikana watches <span className="text-[#16A34A]">WhatsApp</span> for real opportunities that match what you sell, then sends
+              them straight to you as <span className="text-[#1E56A0]">instant notifications</span>. When you're busy, <span className="text-[#1C1C1E] font-bold">AutoPilot</span> can
+              reply for you.
+            </p>
 
-              <div className="text-[11px] text-[#A1A1AA] font-mono">
-                POTRAZ '26
-              </div>
+            {/* Action Buttons */}
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a
+                href="#try-it"
+                className="px-6 sm:px-7 py-3 rounded-full text-sm font-medium text-white bg-[#1C1C1E] hover:bg-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E56A0] shadow-2xs"
+              >
+                Try Mikana
+              </a>
+              <a
+                href="#how-it-works"
+                className="px-5 sm:px-6 py-3 rounded-full text-sm font-medium text-[#1C1C1E] bg-white border border-[#E5E5E0] hover:bg-[#F5F5F0] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E56A0] shadow-2xs"
+              >
+                See what it can do
+              </a>
             </div>
 
-            {/* Window Content Part 1: The 3-Step Detection Flow (Exact reproduction of media_1790656459354.png) */}
-            <div className="p-6 sm:p-8 bg-[#FCFCFA] border-b border-[#EBEBE6]">
-              <div className="text-center max-w-xl mx-auto mb-6">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#1E56A0] font-semibold">
-                  HOW MIKANA CATCHES YOUR NEXT DEAL
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#1C1C1E] tracking-tight mt-1">
-                  From group noise to your phone in seconds.
-                </h3>
-              </div>
+            {/* Interactive Timeline Sequence: message → match → alert */}
+            <div className="mt-14 sm:mt-16">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#1C1C1E] tracking-tight">
+                From group noise to your phone in seconds.
+              </h2>
 
-              {/* 3 Horizontal Cards (side-by-side on desktop, stacked on mobile) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-stretch">
+              <div className="relative mt-6 sm:mt-8 pl-6 sm:pl-7 border-l-2 border-dashed border-[#D5D5CE] space-y-6 sm:space-y-7">
                 
-                {/* 1. WhatsApp Group Card */}
-                <div className="flex flex-col justify-between p-1">
-                  <div className="flex items-center justify-between text-[12px] font-medium text-[#1E293B] mb-2 px-1">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#25D366]" />
-                      <span className="font-semibold text-[#111827]">WhatsApp Group</span>
+                {/* 1. The group message */}
+                <div className="relative">
+                  <span className="absolute -left-[31px] sm:-left-[35px] top-1.5 w-3 h-3 rounded-full bg-[#FAFAF8] border-2 border-[#8A8880]" />
+                  <div className="w-full max-w-md">
+                    <div className="flex items-center justify-between text-xs text-[#55544E] mb-1.5">
+                      <span className="flex items-center gap-1.5 font-medium">
+                        <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+                        Harare Wholesale &amp; Spares Trade
+                      </span>
+                      <span className="tabular-nums text-[#8A8880]">10:42 AM</span>
                     </div>
-                    <span className="text-[#64748B] font-mono text-[11px]">10:42 AM</span>
-                  </div>
-
-                  <div className="flex-1 p-4 sm:p-5 rounded-2xl bg-[#E8F8EA] border border-[#D1F2D9] text-[#111B21] flex flex-col justify-between shadow-2xs">
-                    <div>
-                      <div className="text-[12px] font-bold text-[#111827]">Customer</div>
-                      <p className="text-[13.5px] text-[#1F2937] leading-snug mt-1 font-medium">
+                    <div className="p-3.5 sm:p-4 rounded-2xl rounded-tl-sm bg-[#E8F8EA] border border-[#D1F2D9] shadow-2xs">
+                      <div className="text-xs font-bold text-[#111827]">Customer</div>
+                      <p className="text-sm sm:text-[15px] text-[#1F2937] leading-snug mt-1 font-normal">
                         “Anyone selling a Toyota Hilux 2KD injector? Need one urgently.”
                       </p>
                     </div>
-                    <div className="text-[11px] text-right text-[#64748B] font-mono mt-3">
-                      10:42 AM
-                    </div>
                   </div>
                 </div>
 
-                {/* 2. Mikana Noticed Card */}
-                <div className="flex flex-col justify-between p-1">
-                  <div className="text-center text-[11px] font-bold text-[#1E56A0] tracking-wider uppercase mb-2">
-                    MIKANA NOTICED
-                  </div>
-
-                  <div className="flex-1 p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#1E56A0] shadow-xs flex flex-col justify-between space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-extrabold uppercase tracking-wide text-[#1E56A0]">
-                        NEW OPPORTUNITY
-                      </span>
-                      <span className="text-[12px] font-bold text-[#10B981]">
-                        94% match
-                      </span>
-                    </div>
-
-                    <div>
-                      <div className="text-[15px] font-bold text-[#111827]">
+                {/* 2. What Mikana matched */}
+                <div className="relative">
+                  <span className="absolute -left-[31px] sm:-left-[35px] top-1.5 w-3 h-3 rounded-full bg-[#1E56A0] border-2 border-[#1E56A0]" />
+                  <div className="w-full max-w-md sm:ml-6 md:ml-8">
+                    <div className="text-xs text-[#1E56A0] font-bold mb-1.5 uppercase tracking-wide">Mikana noticed</div>
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-white border-2 border-[#1E56A0] shadow-xs">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-[#1E56A0]">New opportunity</span>
+                        <span className="font-bold text-[#0E8F63]">94% match</span>
+                      </div>
+                      <div className="mt-1.5 text-base sm:text-[17px] font-bold text-[#111827] leading-tight">
                         Toyota Hilux 2KD Injector
                       </div>
-                      <p className="text-[11.5px] text-[#64748B] mt-0.5">
+                      <p className="text-xs text-[#66645D] mt-0.5">
                         Matches your catalog: Denso OEM 2KD
                       </p>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-2 border-t border-[#F1F1ED] text-[12px]">
-                      <span className="flex items-center gap-1 text-[#64748B]">
-                        <MapPin className="w-3.5 h-3.5 text-[#94A3B8]" />
-                        Harare
-                      </span>
-                      <span className="font-bold text-[#DC2626]">
-                        Urgent
-                      </span>
+                      <div className="mt-2.5 pt-2.5 border-t border-[#F1F1ED] flex items-center justify-between text-xs">
+                        <span className="text-[#66645D]">Harare</span>
+                        <span className="font-bold text-[#DC2626]">Urgent</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* 3. Your Phone Card */}
-                <div className="flex flex-col justify-between p-1">
-                  <div className="text-[12px] font-medium text-[#64748B] mb-2 px-1">
-                    Your Phone
-                  </div>
-
-                  <div className="flex-1 p-4 sm:p-5 rounded-2xl bg-[#0B1E2D] text-white shadow-md flex flex-col justify-between space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-[12px] font-semibold text-white">
-                        <Bell className="w-3.5 h-3.5 text-blue-400" />
-                        <span>Mikana</span>
+                {/* 3. The alert on your phone */}
+                <div className="relative">
+                  <span className="absolute -left-[31px] sm:-left-[35px] top-1.5 w-3 h-3 rounded-full bg-[#FAFAF8] border-2 border-[#8A8880]" />
+                  <div className="w-full max-w-md sm:ml-12 md:ml-16">
+                    <div className="text-xs text-[#55544E] font-medium mb-1.5">Your phone</div>
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0B1E2D] text-white shadow-md">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="flex items-center gap-1.5 font-bold">
+                          <span className="w-2 h-2 rounded-full bg-blue-400" />
+                          Mikana
+                        </span>
+                        <span className="text-[#94A3B8]">Just now</span>
                       </div>
-                      <span className="text-[11px] text-[#94A3B8] font-mono">Just now</span>
-                    </div>
-
-                    <div>
-                      <div className="text-[13px] font-bold text-white">
+                      <div className="mt-1.5 text-sm font-bold">
                         Mikana found an opportunity for you
                       </div>
-                      <p className="text-[12px] text-[#CBD5E1] leading-relaxed mt-1">
+                      <p className="text-xs text-[#CBD5E1] leading-relaxed mt-1">
                         Toyota Hilux 2KD injector in Harare. Urgent request.
                       </p>
-                    </div>
-
-                    <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-blue-300">
-                      <span>Tap to view drafted quote</span>
-                      <span>→</span>
+                      <div className="mt-2.5 pt-2.5 border-t border-white/10 text-xs text-blue-300 font-medium">
+                        Tap to view drafted quote →
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -208,91 +167,64 @@ export function HeroVisual() {
               </div>
             </div>
 
-            {/* Window Content Part 2: What Happens Next — The Phone & Instant Quote Composer */}
-            <div className="p-6 sm:p-10 bg-white">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                
-                {/* Left: Explanation of the drafted quote + AutoPilot */}
-                <div className="lg:col-span-6 space-y-6">
-                  
-                  <div className="space-y-2">
-                    <div className="font-mono text-[11px] uppercase tracking-wider text-[#1E56A0] font-semibold">
-                      [ 04 // ONE-TAP RESPONSE ]
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#1C1C1E] tracking-tight">
-                      Tap the alert. Your quote is already drafted.
-                    </h3>
-                    <p className="text-sm sm:text-base text-[#66645D] leading-relaxed">
-                      Mikana cross-references the buyer's request against your actual stock, verifies your pricing, and writes a professional WhatsApp reply ready to send.
-                    </p>
-                  </div>
-
-                  {/* High Value Feature Bullet Points */}
-                  <div className="space-y-3.5 pt-1">
-                    <div className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-[#1C1C1E]">Grounded in your real prices</div>
-                        <p className="text-xs text-[#71717A]">Mikana pulls your exact price ($120 USD) and 6-month warranty from your uploaded catalog.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-blue-100 text-[#1E56A0] flex items-center justify-center shrink-0 mt-0.5">
-                        <Send className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-[#1C1C1E]">1-Tap Private WhatsApp Reply</div>
-                        <p className="text-xs text-[#71717A]">Opens directly to the customer's WhatsApp DM with the quote pre-filled. You just tap send.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
-                        <Sparkles className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-[#1C1C1E]">AutoPilot responds when you're busy</div>
-                        <p className="text-xs text-[#71717A]">Driving or serving another customer? AutoPilot can send the verified quote automatically within 2 minutes.</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Fast Stat Badges */}
-                  <div className="pt-2 grid grid-cols-3 gap-3 border-t border-[#F0F0EB]">
-                    <div className="p-2.5 rounded-xl bg-[#FAF9F6] border border-[#EBEBE6] text-center">
-                      <div className="text-base font-bold text-[#1C1C1E]">&lt; 30s</div>
-                      <div className="text-[10px] text-[#71717A]">Lead caught</div>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-[#FAF9F6] border border-[#EBEBE6] text-center">
-                      <div className="text-base font-bold text-[#10B981]">100%</div>
-                      <div className="text-[10px] text-[#71717A]">Grounded quotes</div>
-                    </div>
-                    <div className="p-2.5 rounded-xl bg-[#FAF9F6] border border-[#EBEBE6] text-center">
-                      <div className="text-base font-bold text-[#1E56A0]">0</div>
-                      <div className="text-[10px] text-[#71717A]">Lost deals</div>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Right: Samsung Galaxy S24 Device Frame with Real App Quote Screen */}
-                <div className="lg:col-span-6 flex justify-center">
-                  <SamsungPhoneFrame
-                    src="/screens/screen_inquiry_quote.png"
-                    alt="Mikana Inquiry & Quick Quote Screen"
-                    caption="Real Mikana screen: Instant WhatsApp quote grounded in your catalog"
-                  />
-                </div>
-
+            {/* ── Mobile-Only Phone Frame (Keeps flow intact on mobile scrolling!) ── */}
+            <div className="lg:hidden mt-10 pt-6 border-t border-[#EBEBE6] flex flex-col items-center">
+              <div className="text-xs font-semibold text-[#1E56A0] uppercase tracking-wider mb-4">
+                What opens when you tap:
               </div>
+              <SamsungPhoneFrame
+                src="/screens/screen_inquiry_quote.png"
+                alt="Mikana Inquiry & Quick Quote Screen"
+                caption="Live screen: Instant WhatsApp quote pre-filled from your catalog"
+              />
+            </div>
+
+            {/* Feature Callouts: What the tap does */}
+            <div className="mt-12 sm:mt-16 max-w-xl">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#1C1C1E] tracking-tight">
+                Tap the alert. Your quote is already drafted.
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-[#66645D] leading-relaxed">
+                Mikana checks the buyer's request against your actual stock, verifies your pricing,
+                and writes a WhatsApp reply that's ready to send.
+              </p>
+
+              <dl className="mt-6 divide-y divide-[#E5E5E0] border-y border-[#E5E5E0]">
+                <div className="py-3.5 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt className="text-sm font-bold text-[#1C1C1E]">Your real prices</dt>
+                  <dd className="mt-1 sm:mt-0 text-xs sm:text-sm text-[#66645D] leading-relaxed">
+                    Mikana pulls your exact price ($120 USD) and 6-month warranty from your uploaded catalog.
+                  </dd>
+                </div>
+                <div className="py-3.5 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt className="text-sm font-bold text-[#1C1C1E]">One-tap reply</dt>
+                  <dd className="mt-1 sm:mt-0 text-xs sm:text-sm text-[#66645D] leading-relaxed">
+                    Opens the customer's WhatsApp DM with the quote pre-filled. You just tap send.
+                  </dd>
+                </div>
+                <div className="py-3.5 sm:grid sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt className="text-sm font-bold text-[#1C1C1E]">AutoPilot</dt>
+                  <dd className="mt-1 sm:mt-0 text-xs sm:text-sm text-[#66645D] leading-relaxed">
+                    Driving or serving another customer? AutoPilot can send the verified quote automatically within 2 minutes.
+                  </dd>
+                </div>
+              </dl>
             </div>
 
           </div>
-        </div>
 
+          {/* ── Right Column (Desktop Sticky): Real app screen stays in view when scrolling ── */}
+          <div className="hidden lg:block lg:col-span-5">
+            <div className="sticky top-12 flex justify-center">
+              <SamsungPhoneFrame
+                src="/screens/screen_inquiry_quote.png"
+                alt="Mikana Inquiry & Quick Quote Screen"
+                caption="Real Mikana screen: Instant WhatsApp quote grounded in your catalog"
+              />
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
