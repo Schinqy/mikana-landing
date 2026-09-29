@@ -5,24 +5,24 @@ import { ArrowRight, Bot, Clock, CheckCircle2, ShieldCheck, Zap } from 'lucide-r
 
 export function AutoPilotSection() {
   return (
-    <section className="py-20 sm:py-28 border-t border-[#E2E8F0] bg-[#FFFFFF]">
+    <section className="py-20 sm:py-28 border-t border-[#EBEBE6] bg-[#FAFAF8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="text-xs font-bold uppercase tracking-wider text-[#1E56A0]">
-            24/7 AUTONOMOUS RESPONDER
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1E56A0]">
+            [ 24/7 AUTONOMOUS DEAL RESPONDER ]
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B2545] tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-semibold text-[#1C1C1E] tracking-tight">
             What happens when you’re too busy to answer?
           </h2>
-          <p className="text-base sm:text-lg text-[#486581]">
+          <p className="text-base sm:text-lg text-[#66645D]">
             AutoPilot keeps the deal alive even while you are working, driving, or asleep.
           </p>
         </div>
 
         {/* 3-Step Sequence Card */}
-        <div className="max-w-4xl mx-auto p-6 sm:p-10 rounded-3xl bg-[#F8FAFC] border border-[#E2E8F0] shadow-xs">
+        <div className="max-w-4xl mx-auto p-6 sm:p-10 rounded-3xl bg-white border border-[#EBEBE6] shadow-sm">
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             

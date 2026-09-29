@@ -12,16 +12,13 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Brand Logo & Name */}
-          <Link href="/" className="flex items-center gap-2.5">
+          {/* Official Brand Logotype */}
+          <Link href="/" className="flex items-center">
             <img
-              src="/logo.svg"
+              src="/logotype.svg"
               alt="Mikana"
-              className="w-7 h-7 object-contain"
+              className="h-7 sm:h-8 w-auto object-contain"
             />
-            <span className="text-[17px] font-semibold tracking-tight text-[#1C1C1E]">
-              mikana
-            </span>
           </Link>
 
           {/* Clean Center Navigation Links */}

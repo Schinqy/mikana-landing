@@ -56,8 +56,8 @@ export function HeroVisual() {
             ?
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-[17px] text-[#66645D] max-w-xl mx-auto leading-relaxed font-normal">
-            Mikana watches <span className="inline-flex items-center font-medium text-[#075E54] bg-[#E8F8EA] px-2 py-0.5 rounded-md border border-[#D1F2D9]">WhatsApp</span> for <span className="font-semibold text-[#1C1C1E]">real opportunities</span> that match what you sell, then brings them straight to you with instant notifications. And when you're busy, <span className="inline-flex items-center gap-1 font-medium text-[#1E56A0] bg-[#EEF2FF] px-2 py-0.5 rounded-md border border-[#D0E1FD]">AutoPilot →</span> can respond for you.
+          <p className="text-base sm:text-[17.5px] text-[#3F3E3A] max-w-2xl mx-auto leading-relaxed font-medium">
+            Mikana watches <span className="text-[#16A34A] font-semibold">WhatsApp</span> for <span className="text-[#1C1C1E] font-semibold">real opportunities</span> that match what you sell, then brings them straight to you with <span className="text-[#1E56A0] font-semibold">instant notifications</span>. And when you're busy, <span className="text-[#1E56A0] font-semibold">AutoPilot</span> can respond for you.
           </p>
 
           {/* Action Buttons - Moonjar pill style */}
@@ -91,7 +91,7 @@ export function HeroVisual() {
               </div>
 
               <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E5E5E0] text-[11px] font-medium text-[#55544E] shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Harare Wholesale & Spares Trade • Live Opportunity Detection</span>
               </div>
 
