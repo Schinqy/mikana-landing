@@ -17,7 +17,7 @@ export function Navbar() {
             <img
               src="/logotype.svg"
               alt="Mikana"
-              className="h-7 sm:h-8 w-auto object-contain"
+              className="h-8 sm:h-9 w-auto object-contain"
             />
           </Link>
 
