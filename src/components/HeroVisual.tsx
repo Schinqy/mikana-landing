@@ -13,11 +13,11 @@ export function HeroVisual() {
         <div className="text-center max-w-3xl mx-auto space-y-6">
           <h1 className="text-4xl sm:text-6xl lg:text-[70px] font-semibold tracking-[-0.04em] text-[#1C1C1E] leading-[1.08] max-w-4xl mx-auto">
             What if you never missed <br className="hidden sm:inline" />
-            your next potential customer?
+            your next <span className="text-[#1E56A0]">potential customer</span>?
           </h1>
 
           <p className="text-base sm:text-lg lg:text-[18.5px] text-[#66645D] max-w-2xl mx-auto leading-relaxed font-normal">
-            Mikana watches WhatsApp for real opportunities that match what you sell, then brings them straight to you with instant notifications. And when you're busy, AutoPilot can respond for you.
+            Mikana watches <span className="inline-flex items-center font-medium text-[#075E54] bg-[#E8F8EA] px-2 py-0.5 rounded-md border border-[#D1F2D9]">WhatsApp</span> for <span className="font-semibold text-[#1C1C1E]">real opportunities</span> that match what you sell, then brings them straight to you with instant notifications. And when you're busy, <span className="inline-flex items-center gap-1 font-medium text-[#1E56A0] bg-[#EEF2FF] px-2 py-0.5 rounded-md border border-[#D0E1FD]">AutoPilot →</span> can respond for you.
           </p>
 
           {/* Action Buttons - Moonjar pill style */}
