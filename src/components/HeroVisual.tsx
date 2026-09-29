@@ -1,10 +1,27 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, MapPin, Bell, Check, Sparkles, Send } from 'lucide-react';
 import { SamsungPhoneFrame } from './SamsungPhoneFrame';
 
+const SWAP_WORDS = ['customer', 'client', 'deal', 'buyer', 'sale'];
+
 export function HeroVisual() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFlipping(true);
+      setTimeout(() => {
+        setWordIndex((prev) => (prev + 1) % SWAP_WORDS.length);
+        setIsFlipping(false);
+      }, 220);
+    }, 2400);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="overview" className="pt-14 pb-20 sm:pt-20 sm:pb-28 bg-[#FAFAF8]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +30,20 @@ export function HeroVisual() {
         <div className="text-center max-w-3xl mx-auto space-y-6">
           <h1 className="text-4xl sm:text-6xl lg:text-[70px] font-semibold tracking-[-0.04em] text-[#1C1C1E] leading-[1.08] max-w-4xl mx-auto">
             What if you never missed <br className="hidden sm:inline" />
-            your next <span className="text-[#1E56A0]">potential customer</span>?
+            your next potential{' '}
+            <span className="relative inline-block text-[#1E56A0] font-bold">
+              <span
+                className={`inline-block transition-all duration-250 ease-out transform ${
+                  isFlipping
+                    ? 'opacity-0 -translate-y-2 scale-95 blur-[1px]'
+                    : 'opacity-100 translate-y-0 scale-100 blur-0'
+                }`}
+              >
+                {SWAP_WORDS[wordIndex]}
+              </span>
+              <span className="absolute left-0 -bottom-1 w-full h-[2.5px] bg-[#1E56A0]/30 rounded-full" />
+            </span>
+            ?
           </h1>
 
           <p className="text-base sm:text-lg lg:text-[18.5px] text-[#66645D] max-w-2xl mx-auto leading-relaxed font-normal">
