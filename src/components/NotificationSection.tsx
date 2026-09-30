@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ArrowRight, Check } from 'lucide-react';
+import { SamsungPhoneFrame } from './SamsungPhoneFrame';
 
 export function NotificationSection() {
   return (
@@ -21,7 +22,7 @@ export function NotificationSection() {
           </p>
         </div>
 
-        {/* 2-Column: Left Real Lock-Screen Alert, Right Actual Quote Screen */}
+        {/* 2-Column: Left Real Lock-Screen Alert, Right Actual Phone Screen */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-5xl mx-auto">
           
           {/* Left Column: Real Lock Screen Alert Screenshot */}
@@ -49,28 +50,16 @@ export function NotificationSection() {
             </div>
           </div>
 
-          {/* Right Column: Actual Screen That Opens */}
-          <div className="space-y-6 flex flex-col items-center">
+          {/* Right Column: Actual Phone Screen That Opens */}
+          <div className="space-y-4 flex flex-col items-center">
             <div className="w-full text-xs font-semibold text-[#8A8880] uppercase tracking-wider">
               2. What opens when you tap:
             </div>
 
-            <div className="relative rounded-3xl p-3 bg-white border border-[#E5E5E0] shadow-xl max-w-xs sm:max-w-sm w-full">
-              <div className="text-[11px] font-bold text-[#71717A] mb-2 px-1 flex items-center justify-between">
-                <span>Quote Composer</span>
-                <span className="text-[#16A34A] flex items-center gap-1 font-semibold">
-                  <Check className="w-3.5 h-3.5" />
-                  <span>Ready to send</span>
-                </span>
-              </div>
-              <div className="rounded-2xl overflow-hidden border border-[#EBEBE6]">
-                <img
-                  src="/screens/screen_quote.jpg"
-                  alt="Mikana Quote Composer Screen"
-                  className="w-full h-auto object-cover select-none"
-                />
-              </div>
-            </div>
+            <SamsungPhoneFrame
+              src="/screens/screen_quote.jpg"
+              alt="Mikana Quote Composer Screen"
+            />
           </div>
 
         </div>

@@ -42,7 +42,7 @@ export function FinalScreen() {
             <div className="space-y-1.5 max-w-sm">
               <img src="/logotype.svg" alt="Mikana" className="h-7 w-auto object-contain" />
               <p className="text-xs text-[#71717A]">
-                AI sales assistant for WhatsApp business groups in Zimbabwe.
+                AI sales assistant for WhatsApp business groups.
               </p>
             </div>
 
@@ -96,7 +96,7 @@ export function FinalScreen() {
               <Link href="/delete-account" className="hover:text-[#DC2626] transition-colors font-medium">Delete Account</Link>
             </div>
             <div>
-              © {new Date().getFullYear()} Mikana • Harare, Zimbabwe
+              © {new Date().getFullYear()} Mikana • All rights reserved
             </div>
           </div>
 

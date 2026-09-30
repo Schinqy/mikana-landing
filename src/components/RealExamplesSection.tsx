@@ -45,7 +45,7 @@ export function RealExamplesSection() {
             What could Mikana find for your business?
           </h2>
           <p className="text-base text-[#486581]">
-            These requests appear daily across Zimbabwean WhatsApp groups.
+            These requests appear daily across active WhatsApp trade groups.
           </p>
         </div>
 
