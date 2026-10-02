@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Menu, X } from 'lucide-react';
+import { GooglePlayButton, GooglePlayIcon, PLAY_STORE_URL } from './GooglePlayButton';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,14 +38,9 @@ export function Navbar() {
             </a>
           </nav>
 
-          {/* Action Button - Glossy Dark Pill */}
+          {/* Action Button - Direct Google Play link */}
           <div className="hidden sm:flex items-center">
-            <a
-              href="#try-it"
-              className="px-4.5 py-2 rounded-full text-[13px] font-medium text-white bg-[#1C1C1E] hover:bg-black active:scale-[0.97] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.1),0_2px_6px_rgba(28,28,30,0.15)]"
-            >
-              Try Mikana
-            </a>
+            <GooglePlayButton variant="nav" />
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,11 +95,14 @@ export function Navbar() {
             </a>
             <div className="pt-2">
               <a
-                href="#try-it"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center py-2.5 rounded-full bg-[#1C1C1E] text-white font-medium text-xs shadow-sm hover:bg-black transition-colors"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-[#1C1C1E] text-white font-medium text-xs shadow-sm hover:bg-black transition-colors"
               >
-                Try Mikana
+                <GooglePlayIcon className="w-3.5 h-3.5" />
+                <span>Get on Google Play</span>
               </a>
             </div>
           </div>

@@ -43,7 +43,11 @@ export function FaqSection() {
     },
     {
       q: 'Is Mikana available now?',
-      a: 'Mikana is currently being developed and tested. Visitors can join the early testing programme.',
+      a: 'Yes! Mikana is officially live and available for download on the Google Play Store for Android. You can install it today and start monitoring your trade groups immediately.',
+    },
+    {
+      q: 'Is there an iPhone / iOS version?',
+      a: 'Mikana is currently available on Android. Web and iOS versions are currently in development. If your business operates WhatsApp on Android, you can get started right away.',
     },
   ];
 

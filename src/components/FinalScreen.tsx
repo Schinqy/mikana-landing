@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Phone, Mail } from 'lucide-react';
+import { GooglePlayButton, PLAY_STORE_URL } from './GooglePlayButton';
 
 export function FinalScreen() {
   return (
@@ -10,25 +11,19 @@ export function FinalScreen() {
       {/* Pre-Footer CTA */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center space-y-4">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C1E] leading-tight">
-          Your next customer might already be asking for you.
+          Your next customer is already asking for what you sell.
         </h2>
         <p className="text-base sm:text-lg font-medium text-[#1E56A0]">
-          Mikana helps you find them in your WhatsApp groups and chats.
+          Mikana watches your trade groups 24/7 and delivers instant buyer leads to your phone.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <GooglePlayButton variant="pill" />
           <a
             href="#demo"
             className="w-full sm:w-auto px-6 py-2.5 rounded-full font-medium text-sm text-[#1C1C1E] bg-white hover:bg-[#F4F4F0] border border-[#E5E5E0] transition-colors shadow-2xs"
           >
-            Try Mikana
-          </a>
-          <a
-            href="#try-it"
-            className="w-full sm:w-auto px-6 py-2.5 rounded-full font-medium text-sm text-white bg-[#1C1C1E] hover:bg-black transition-colors flex items-center justify-center gap-2 shadow-2xs"
-          >
-            <span>Join Early Testing</span>
-            <ArrowRight className="w-4 h-4" />
+            See Live Demo
           </a>
         </div>
       </div>
@@ -89,7 +84,7 @@ export function FinalScreen() {
               <a href="#how-it-works" className="hover:text-[#1C1C1E] transition-colors">How It Works</a>
               <a href="#demo" className="hover:text-[#1C1C1E] transition-colors">Live Flow</a>
               <a href="#examples" className="hover:text-[#1C1C1E] transition-colors">Examples</a>
-              <a href="#try-it" className="hover:text-[#1C1C1E] transition-colors">Try Mikana</a>
+              <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#1C1C1E] transition-colors font-medium">Google Play Store</a>
               <a href="#faq" className="hover:text-[#1C1C1E] transition-colors">FAQ</a>
               <Link href="/privacy" className="hover:text-[#1C1C1E] transition-colors font-medium">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-[#1C1C1E] transition-colors font-medium">Terms of Service</Link>

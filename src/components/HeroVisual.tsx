@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Zap } from 'lucide-react';
 import { SamsungPhoneFrame } from './SamsungPhoneFrame';
+import { GooglePlayButton } from './GooglePlayButton';
 
 const SWAP_WORDS = ['customer', 'client', 'deal', 'buyer', 'sale'];
 
@@ -51,6 +52,15 @@ export function HeroVisual() {
           {/* ── Left Column: Headline, Pitch & CTAs ── */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-4 sm:space-y-5 lg:space-y-5">
             
+            {/* Live Google Play Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-semibold w-fit shadow-2xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span>Now Live on Google Play Store</span>
+            </div>
+
             {/* Headline with Typewriter */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[50px] font-bold tracking-[-0.035em] text-[#1C1C1E] leading-[1.12]">
               What if you never missed your next potential{' '}
@@ -71,15 +81,9 @@ export function HeroVisual() {
               reply for you.
             </p>
 
-            {/* Tactile Action Buttons */}
+            {/* Action Buttons: Direct Play Store CTA */}
             <div className="flex flex-wrap items-center gap-3 pt-1 sm:pt-2">
-              <a
-                href="#try-it"
-                className="group inline-flex items-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-[14px] font-medium text-white bg-[#1C1C1E] hover:bg-black active:scale-[0.98] transition-all duration-150 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(28,28,30,0.12)]"
-              >
-                <span>Try Mikana</span>
-                <ArrowRight className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </a>
+              <GooglePlayButton variant="hero" />
               <a
                 href="#how-it-works"
                 className="inline-flex items-center justify-center px-5 sm:px-6 py-3 sm:py-3.5 rounded-full text-[14px] font-medium text-[#1C1C1E] bg-white hover:bg-[#FAF9F6] border border-[#E5E5E0] hover:border-[#D0D0CA] active:scale-[0.98] transition-all duration-150 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"

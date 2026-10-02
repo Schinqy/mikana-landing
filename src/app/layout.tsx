@@ -2,13 +2,19 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Mikana — WhatsApp Deals Found Instantly',
+  title: 'Mikana — AI Sales Assistant for WhatsApp | Available on Google Play',
   description:
-    'Mikana watches WhatsApp business groups, identifies buyer requests matching what you sell, and immediately brings them to you.',
+    'Mikana watches WhatsApp business groups 24/7, detects customer inquiries matching what you sell, and sends instant notifications. Download now on the Google Play Store.',
   icons: {
     icon: '/logo.svg',
     shortcut: '/logo.svg',
     apple: '/logo.svg',
+  },
+  openGraph: {
+    title: 'Mikana — AI Sales Assistant for WhatsApp',
+    description:
+      'Never miss your next customer in WhatsApp trade groups. Live now on Google Play.',
+    type: 'website',
   },
 };
 
