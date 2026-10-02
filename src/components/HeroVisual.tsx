@@ -52,14 +52,6 @@ export function HeroVisual() {
           {/* ── Left Column: Headline, Pitch & CTAs ── */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-4 sm:space-y-5 lg:space-y-5">
             
-            {/* Live Google Play Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-semibold w-fit shadow-2xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span>Now Live on Google Play Store</span>
-            </div>
 
             {/* Headline with Typewriter */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[50px] font-bold tracking-[-0.035em] text-[#1C1C1E] leading-[1.12]">

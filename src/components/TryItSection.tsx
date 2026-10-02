@@ -44,10 +44,6 @@ export function TryItSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Google Play Store • Android</span>
-          </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-[#1C1C1E] tracking-tight">
             Get Mikana on Android Today
           </h2>

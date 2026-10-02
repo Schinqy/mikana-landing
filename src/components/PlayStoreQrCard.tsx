@@ -11,9 +11,8 @@ export function PlayStoreQrCard() {
 
   return (
     <div className="relative rounded-3xl bg-white border border-[#E5E5E0] shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-6 sm:p-7 text-center">
-      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-semibold mb-4">
-        <Smartphone className="w-3.5 h-3.5" />
-        <span>Scan to Install</span>
+      <div className="text-[13px] font-semibold text-[#1C1C1E] mb-3">
+        Scan to Install on Android
       </div>
 
       <div className="relative w-48 h-48 mx-auto bg-white rounded-2xl border border-[#EBEBE6] p-3 shadow-inner flex items-center justify-center">
