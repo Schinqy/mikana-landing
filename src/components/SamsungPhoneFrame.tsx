@@ -3,11 +3,12 @@
 import React from 'react';
 
 interface SamsungPhoneFrameProps {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   priority?: boolean;
   className?: string;
   caption?: string;
+  children?: React.ReactNode;
 }
 
 export function SamsungPhoneFrame({
@@ -15,6 +16,7 @@ export function SamsungPhoneFrame({
   alt,
   className = '',
   caption,
+  children,
 }: SamsungPhoneFrameProps) {
   return (
     <div className={`relative flex flex-col items-center ${className}`}>
@@ -27,17 +29,18 @@ export function SamsungPhoneFrame({
 
         {/* Screen Display Container */}
         <div className="relative w-full h-full rounded-[34px] sm:rounded-[38px] overflow-hidden bg-black flex flex-col">
-          
-          {/* Real App Screenshot - native status bar from screenshot displays cleanly without artificial overlay clash */}
-          <div className="relative w-full h-full overflow-hidden bg-[#FFFFFF]">
-            <img
-              src={src}
-              alt={alt}
-              className="w-full h-full object-cover object-top select-none"
-              loading="lazy"
-            />
-          </div>
-
+          {children ? (
+            children
+          ) : src ? (
+            <div className="relative w-full h-full overflow-hidden bg-[#FFFFFF]">
+              <img
+                src={src}
+                alt={alt || ''}
+                className="w-full h-full object-cover object-top select-none"
+                loading="lazy"
+              />
+            </div>
+          ) : null}
         </div>
       </div>
 

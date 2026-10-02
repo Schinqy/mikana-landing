@@ -1,205 +1,280 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight, Check, Send, Sparkles, MessageCircle, Bell, UserCheck, TrendingUp } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { SamsungPhoneFrame } from './SamsungPhoneFrame';
+
+interface FlowStep {
+  number: string;
+  stage: string;
+  title: string;
+  timestamp: string;
+  description: string;
+  bullet: string;
+  caption: string;
+  renderScreen: () => React.ReactNode;
+}
 
 export function InteractiveDemoSection() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
 
-  const demoSteps = [
+  const steps: FlowStep[] = [
     {
-      label: '1. Group Request',
+      number: '01',
+      stage: 'Incoming Request',
       title: 'Customer asks in trade group',
-      desc: 'An inquiry appears in a busy Harare trade group.',
-      tag: 'WhatsApp Group',
+      timestamp: '11:05 AM',
+      description:
+        'Buyers in busy trade groups post quick requests like "Anyone with Toyota Wish bearing?" or "40 cases brown sugar in CBD". Manually monitoring dozens of active groups means missing the sale.',
+      bullet: 'Monitors multiple trade groups simultaneously without manual scrolling',
+      caption: 'Live buyer inquiry posted in monitored WhatsApp trade group',
+      renderScreen: () => (
+        <div className="relative w-full h-full bg-[#0B141A] flex flex-col justify-between p-3.5 select-none">
+          {/* Subtle WhatsApp-style group top bar */}
+          <div className="flex items-center gap-2.5 pt-4 pb-2 border-b border-white/10">
+            <div className="w-8 h-8 rounded-full bg-[#00A884] flex items-center justify-center text-xs font-bold text-white shrink-0">
+              HW
+            </div>
+            <div className="min-w-0">
+              <div className="text-xs font-bold text-white truncate">
+                Harare Wholesale &amp; Retail
+              </div>
+              <div className="text-[10px] text-white/50">740 participants</div>
+            </div>
+          </div>
+
+          {/* Real WhatsApp chat inquiry screenshot crop rendered at true aspect ratio */}
+          <div className="my-auto py-2">
+            <div className="rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-[#1F2C34]">
+              <img
+                src="/screens/screen_missed_opp.jpg"
+                alt="WhatsApp trade group inquiry"
+                className="w-full h-auto object-contain select-none"
+              />
+            </div>
+          </div>
+
+          {/* Bottom message indicator */}
+          <div className="text-[10px] text-center text-white/40 pb-2">
+            Captured automatically by Mikana
+          </div>
+        </div>
+      ),
     },
     {
-      label: '2. Detection',
-      title: 'Mikana detects & qualifies it',
-      desc: 'Matches request to your catalog with 95% accuracy score.',
-      tag: 'Instant Match',
+      number: '02',
+      stage: 'Radar Detection',
+      title: 'Mikana qualifies & scores the match',
+      timestamp: '11:05 AM · Instant',
+      description:
+        'Mikana parses the buyer’s message, extracts product specifications, volume, and delivery location, then checks against your catalog with a 90%–95% relevance match.',
+      bullet: 'Filters group noise and surfaces qualified buyer intent only',
+      caption: 'Inquiry qualified and matched against merchant catalog',
+      renderScreen: () => (
+        <div className="relative w-full h-full bg-white">
+          <img
+            src="/screens/screen_lead.png"
+            alt="Mikana Home feed showing matched trade opportunities"
+            className="w-full h-full object-cover object-top select-none"
+          />
+        </div>
+      ),
     },
     {
-      label: '3. Instant Alert',
-      title: 'Lock-screen notification arrives',
-      desc: 'Your phone buzzes immediately with key details and location.',
-      tag: 'Phone Notification',
+      number: '03',
+      stage: 'Priority Alert',
+      title: 'Lock-screen notification fires',
+      timestamp: '+2 seconds',
+      description:
+        'Your phone alerts you instantly with product name, customer details, and urgency. You don’t need WhatsApp open to know an inquiry for your product just arrived.',
+      bullet: 'Heads-up notification arrives while you are driving, working, or offline',
+      caption: 'Real-time alert on lock-screen with buyer inquiry context',
+      renderScreen: () => (
+        <div className="relative w-full h-full bg-[#0D1117] overflow-hidden select-none">
+          {/* Real Android phone lock screen background */}
+          <img
+            src="/screens/screen_live.png"
+            alt="Android Lock Screen"
+            className="w-full h-full object-cover select-none opacity-85"
+          />
+          {/* Real push notification banner sitting naturally at true proportions */}
+          <div className="absolute top-12 sm:top-14 inset-x-2.5 z-20">
+            <div className="rounded-2xl overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.6)] border border-white/15 bg-[#16181D]">
+              <img
+                src="/screens/screenshot_notification.jpg"
+                alt="Mikana Lock-Screen Notification"
+                className="w-full h-auto object-contain select-none"
+              />
+            </div>
+            <div className="mt-3 text-center">
+              <span className="inline-block px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-medium text-white/80">
+                1-tap opens pre-filled quote
+              </span>
+            </div>
+          </div>
+        </div>
+      ),
     },
     {
-      label: '4. Suggested Quote',
-      title: 'Ready-to-send WhatsApp quote',
-      desc: 'A polite, catalog-grounded message is drafted for 1-tap dispatch.',
-      tag: '1-Tap Quote',
+      number: '04',
+      stage: 'One-Tap Quote',
+      title: 'Pre-drafted quotation ready to send',
+      timestamp: '1-Tap Dispatch',
+      description:
+        'Tap the alert to open the quote composer. Mikana pulls current pricing, stock availability, and drafts a polite DM response. Tap Send to dispatch directly to the buyer.',
+      bullet: 'Dispatches privately to the buyer so competing sellers cannot undercut',
+      caption: 'Pre-filled WhatsApp quote ready for instant private dispatch',
+      renderScreen: () => (
+        <div className="relative w-full h-full bg-white">
+          <img
+            src="/screens/screen_quote.jpg"
+            alt="Mikana Quick Quote composer screen"
+            className="w-full h-full object-cover object-top select-none"
+          />
+        </div>
+      ),
     },
     {
-      label: '5. Deal Pipeline',
-      title: 'Captured into deal tracker',
-      desc: 'Tracked from initial quotation to won sale.',
-      tag: 'Pipeline CRM',
+      number: '05',
+      stage: 'Deal Tracker',
+      title: 'Organized into your sales pipeline',
+      timestamp: 'CRM Pipeline',
+      description:
+        'Every quoted inquiry moves into your CRM deal stages (Unquoted → Quoted → Negotiating → Won). Track which deals are awaiting response, follow up on time, and measure won revenue.',
+      bullet: 'Maintains deal history and prompts timely follow-ups automatically',
+      caption: 'Deal logged and tracked through Quoted, Negotiating, and Won stages',
+      renderScreen: () => (
+        <div className="relative w-full h-full bg-white">
+          <img
+            src="/screens/screen_pipeline_clean.png"
+            alt="Mikana deal pipeline tracking sales stages"
+            className="w-full h-full object-cover object-top select-none"
+          />
+        </div>
+      ),
     },
   ];
 
+  const currentStep = steps[activeIdx];
+
   return (
-    <section id="demo" className="py-12 sm:py-16 border-y border-[#E2E8F0] bg-[#FFFFFF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="demo" className="py-16 sm:py-24 bg-white border-y border-[#E5E5E0]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-3">
+        <div className="max-w-3xl mb-12 sm:mb-16 space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF2FA] text-[#1E56A0] text-xs font-semibold">
-            Interactive Walkthrough
+            Product Walkthrough
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0B2545] tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-bold text-[#1C1C1E] tracking-tight">
             See Mikana actually do it.
           </h2>
-          <p className="text-base text-[#486581]">
-            Step through the exact flow from incoming message to won deal.
+          <p className="text-base sm:text-lg text-[#66645D]">
+            Step through the exact flow from incoming trade message to won deal in the real app.
           </p>
         </div>
 
-        {/* Step Selector Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-3xl mx-auto">
-          {demoSteps.map((step, idx) => (
-            <button
-              key={step.label}
-              onClick={() => setActiveStep(idx)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-150 ${
-                activeStep === idx
-                  ? 'bg-[#0B2545] text-white shadow-xs'
-                  : 'bg-[#F1F5F9] text-[#486581] hover:text-[#0B2545] hover:bg-[#E2E8F0]'
-              }`}
-            >
-              {step.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Interactive Simulation Display Area */}
-        <div className="max-w-3xl mx-auto p-6 sm:p-10 rounded-3xl bg-[#F8FAFC] border border-[#E2E8F0] shadow-sm">
+        {/* Split Screen Layout: Steps on Left, Real Device Frame on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4 mb-6">
-            <div>
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#1E56A0]">
-                {demoSteps[activeStep].tag}
-              </span>
-              <h3 className="text-lg font-bold text-[#0B2545]">
-                {demoSteps[activeStep].title}
-              </h3>
-            </div>
-            <span className="text-xs font-bold text-[#829AB1]">
-              Step {activeStep + 1} of {demoSteps.length}
-            </span>
-          </div>
-
-          {/* Dynamic Content per Step */}
-          <div className="min-h-[220px] flex flex-col justify-center">
-            
-            {activeStep === 0 && (
-              <div className="space-y-3">
-                <div className="text-xs font-semibold text-[#829AB1] flex items-center gap-2">
-                  <MessageCircle className="w-4 h-4 text-[#075E54]" />
-                  <span>Harare Wholesale & Retail Trade (740 participants)</span>
-                </div>
-                <div className="p-4 rounded-2xl rounded-tl-xs bg-[#E7FFDB] border border-[#D0F2C2] text-[#111B21] max-w-md shadow-xs">
-                  <div className="text-xs font-bold text-[#075E54]">Tatenda G.</div>
-                  <p className="text-sm font-medium mt-1">
-                    “Looking for 40 cases of brown sugar for delivery in the CBD tomorrow.”
-                  </p>
-                  <div className="text-[10px] text-right text-[#667781] mt-1">11:15 AM</div>
-                </div>
-              </div>
-            )}
-
-            {activeStep === 1 && (
-              <div className="p-5 rounded-2xl bg-[#FFFFFF] border-2 border-[#1E56A0] shadow-sm space-y-3 max-w-lg mx-auto">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-black uppercase text-[#1E56A0]">
-                    OPPORTUNITY IDENTIFIED
-                  </span>
-                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-[#ECFDF5] text-[#059669]">
-                    95% Match
-                  </span>
-                </div>
-                <div className="text-base font-bold text-[#0B2545]">
-                  40 Cases Brown Sugar (CBD Delivery)
-                </div>
-                <div className="text-xs text-[#486581] flex items-center gap-3">
-                  <span>📍 Harare CBD</span>
-                  <span className="text-xs font-bold text-[#E11D48] bg-[#FFF1F2] px-2 py-0.5 rounded">
-                    Urgent (Tomorrow)
-                  </span>
-                </div>
-              </div>
-            )}
-
-            {activeStep === 2 && (
-              <div className="max-w-md mx-auto p-4 rounded-2xl bg-[#0B2545] text-white shadow-md space-y-2">
-                <div className="flex items-center justify-between text-xs text-blue-200">
-                  <div className="flex items-center gap-1.5 font-bold">
-                    <Bell className="w-3.5 h-3.5 text-blue-300" />
-                    <span>Mikana Alert</span>
+          {/* Left Column: 5-Step Stepper Rail */}
+          <div className="lg:col-span-6 space-y-2.5">
+            {steps.map((step, idx) => {
+              const isActive = activeIdx === idx;
+              return (
+                <button
+                  key={step.number}
+                  type="button"
+                  onClick={() => setActiveIdx(idx)}
+                  className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#FAFAF8] border-[#1E56A0] shadow-[0_2px_12px_rgba(30,86,160,0.08)]'
+                      : 'bg-white border-[#E5E5E0] hover:border-[#D0D0CA] hover:bg-[#FAF9F6]'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <span
+                        className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
+                          isActive
+                            ? 'bg-[#1E56A0] text-white'
+                            : 'bg-[#F4F4F0] text-[#71717A]'
+                        }`}
+                      >
+                        {step.number}
+                      </span>
+                      <span className="text-xs font-semibold text-[#71717A]">
+                        {step.stage}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-mono text-[#94A3B8]">
+                      {step.timestamp}
+                    </span>
                   </div>
-                  <span className="text-[10px] text-blue-300">Just now</span>
-                </div>
-                <div className="text-sm font-bold">
-                  New trade opportunity found
-                </div>
-                <p className="text-xs text-blue-100">
-                  Tatenda is looking for 40 cases of brown sugar in CBD tomorrow.
-                </p>
-              </div>
-            )}
 
-            {activeStep === 3 && (
-              <div className="max-w-lg mx-auto p-5 rounded-2xl bg-white border border-[#CBD5E1] shadow-xs space-y-3">
-                <div className="text-xs font-bold text-[#486581]">
-                  Suggested Response (Grounded in your catalog)
-                </div>
-                <div className="p-3 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#0B2545] font-medium leading-relaxed">
-                  “Hi Tatenda, reaching out regarding your request for 40 cases of brown sugar in Harare Wholesale. We have stock available and can deliver to the CBD tomorrow. Would you like our current case rate?”
-                </div>
-                <button className="w-full py-2.5 rounded-xl bg-[#0B2545] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#133B5C]">
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Send Private Reply (Linked to Group)</span>
+                  <h3
+                    className={`text-sm sm:text-base font-bold mt-2 ${
+                      isActive ? 'text-[#0B2545]' : 'text-[#1C1C1E]'
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+
+                  {isActive && (
+                    <div className="mt-2.5 space-y-3 pt-2.5 border-t border-[#E5E5E0]/70 animate-fadeIn">
+                      <p className="text-xs sm:text-sm text-[#66645D] leading-relaxed">
+                        {step.description}
+                      </p>
+                      <div className="flex items-center gap-2 text-xs font-medium text-[#1E56A0]">
+                        <CheckCircle2 className="w-4 h-4 shrink-0 text-[#16A34A]" />
+                        <span>{step.bullet}</span>
+                      </div>
+                    </div>
+                  )}
                 </button>
-              </div>
-            )}
+              );
+            })}
 
-            {activeStep === 4 && (
-              <div className="max-w-lg mx-auto p-5 rounded-2xl bg-white border border-[#E2E8F0] shadow-xs space-y-3">
-                <div className="text-xs font-bold text-[#486581]">
-                  Deal Pipeline Status
-                </div>
-                <div className="grid grid-cols-4 gap-2 text-center text-xs font-bold">
-                  <div className="p-2 rounded-lg bg-[#F1F5F9] text-[#829AB1]">Captured</div>
-                  <div className="p-2 rounded-lg bg-[#0B2545] text-white">Quoted</div>
-                  <div className="p-2 rounded-lg bg-[#F1F5F9] text-[#829AB1]">Negotiating</div>
-                  <div className="p-2 rounded-lg bg-[#F1F5F9] text-[#829AB1]">Won</div>
-                </div>
-                <p className="text-xs text-center text-[#059669] font-semibold pt-1">
-                  Opportunity tracked and active in pipeline.
-                </p>
+            {/* Stepper Navigation Actions */}
+            <div className="flex items-center justify-between pt-2 px-1 text-xs">
+              <button
+                type="button"
+                onClick={() => setActiveIdx((prev) => Math.max(0, prev - 1))}
+                disabled={activeIdx === 0}
+                className="px-4 py-2 rounded-lg font-medium text-[#71717A] hover:text-[#1C1C1E] disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              >
+                Previous Step
+              </button>
+              <div className="text-[#94A3B8] font-mono">
+                {activeIdx + 1} of {steps.length}
               </div>
-            )}
-
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveIdx((prev) => (prev < steps.length - 1 ? prev + 1 : 0))
+                }
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#1E56A0] hover:bg-[#16488A] text-white font-semibold transition-colors"
+              >
+                <span>{activeIdx === steps.length - 1 ? 'Start Again' : 'Next Step'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
 
-          {/* Next / Previous Controls */}
-          <div className="mt-8 pt-4 border-t border-[#E2E8F0] flex items-center justify-between">
-            <button
-              onClick={() => setActiveStep((prev) => Math.max(0, prev - 1))}
-              disabled={activeStep === 0}
-              className="px-4 py-2 rounded-lg text-xs font-bold text-[#486581] hover:text-[#0B2545] disabled:opacity-30"
-            >
-              Previous Step
-            </button>
-            <button
-              onClick={() => setActiveStep((prev) => Math.min(demoSteps.length - 1, prev + 1))}
-              disabled={activeStep === demoSteps.length - 1}
-              className="px-5 py-2 rounded-lg bg-[#1E56A0] hover:bg-[#16488A] text-white text-xs font-bold disabled:opacity-30 flex items-center gap-1.5"
-            >
-              <span>Next Step</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+          {/* Right Column: Real Device Frame Viewport */}
+          <div className="lg:col-span-6 flex flex-col items-center justify-center pt-4 lg:pt-0">
+            <div className="relative w-full flex flex-col items-center">
+              
+              {/* Samsung Phone Frame with custom native screen compositions */}
+              <SamsungPhoneFrame
+                key={activeIdx}
+                caption={currentStep.caption}
+                className="transition-opacity duration-200"
+              >
+                {currentStep.renderScreen()}
+              </SamsungPhoneFrame>
+
+            </div>
           </div>
 
         </div>
